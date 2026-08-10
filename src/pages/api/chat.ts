@@ -39,7 +39,7 @@ export const POST: APIRoute = async ({ request }) => {
 };
 
 
-## const OPENROUTER_API_KEY = import.meta.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
+// const OPENROUTER_API_KEY = import.meta.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
 
 const SYSTEM_PROMPTS = {
   agenda: `Eres un asistente virtual de IA para una barbería/peluquería llamada "MicroBarber".
