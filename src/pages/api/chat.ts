@@ -1,6 +1,6 @@
-export const prerender = false; // Para que se ejecute en el servidor bajo demanda
-
 import type { APIRoute } from 'astro';
+
+export const prerender = false; // Para que se ejecute en el servidor bajo demanda
 
 const OPENROUTER_API_KEY = import.meta.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
 
@@ -99,8 +99,14 @@ const TOOLS = {
 };
 
 export const POST: APIRoute = async ({ request }) => {
-  if (!OPENROUTER_API_KEY) {
-    return new Response(JSON.stringify({ error: 'Falta configurar la clave.' }), { status: 500 });
+  // 1. Obtener la clave de entorno de Astro
+  const apiKey = import.meta.env.OPENROUTER_API_KEY;
+
+  if (!apiKey) {
+    return new Response(
+      JSON.stringify({ error: 'Falta configurar la clave OPENROUTER_API_KEY en el .env.' }), 
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    );
   }
 
   try {
@@ -108,56 +114,84 @@ export const POST: APIRoute = async ({ request }) => {
     const { messages, demoType, context } = body;
 
     if (!messages || !Array.isArray(messages)) {
-      return new Response(JSON.stringify({ error: 'Formato inválido.' }), { status: 400 });
+      return new Response(
+        JSON.stringify({ error: 'Formato inválido en los mensajes.' }), 
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
     }
 
-    // Preparar el System Prompt
-    let finalSystemPrompt = SYSTEM_PROMPTS[demoType];
+    // 2. Preparar el System Prompt
+    let finalSystemPrompt = SYSTEM_PROMPTS?.[demoType] || '';
     if (context) {
       finalSystemPrompt += `\n\nCONTEXTO ACTUALIZADO POR EL USUARIO (Usa esta información prioritariamente):\n${context}`;
     }
 
-    // Asegurarnos de que el system prompt siempre está primero y actualizado
+    // 3. Insertar/Actualizar el system prompt al inicio
     let finalMessages = [...messages];
     if (finalMessages.length === 0 || finalMessages[0].role !== 'system') {
-       finalMessages.unshift({ role: 'system', content: finalSystemPrompt });
+      finalMessages.unshift({ role: 'system', content: finalSystemPrompt });
     } else {
-       finalMessages[0].content = finalSystemPrompt;
+      finalMessages[0] = { ...finalMessages[0], content: finalSystemPrompt };
     }
 
-    const payload = {
+    // 4. Armar el payload evitando enviar tools vacías
+    const activeTools = TOOLS?.[demoType];
+    const hasTools = Array.isArray(activeTools) && activeTools.length > 0;
+
+    const payload: Record<string, any> = {
       model: "google/gemini-2.5-flash:free",
       messages: finalMessages,
-      tools: TOOLS[demoType],
-      tool_choice: "auto"
     };
 
+    if (hasTools) {
+      payload.tools = activeTools;
+      payload.tool_choice = "auto";
+    }
+
+    // 5. Petición a OpenRouter
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+        'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
+        'HTTP-Referer': 'http://localhost:4321', // Requerido/Recomendado por OpenRouter para analíticas
+        'X-Title': 'Astro App'
       },
       body: JSON.stringify(payload),
     });
 
+    // 6. Control detallado de errores HTTP de la API
     if (!response.ok) {
-      return new Response(JSON.stringify({ error: 'Error en IA.' }), { status: 500 });
+      const errorData = await response.json().catch(() => ({}));
+      console.error('Error de OpenRouter:', errorData);
+      return new Response(
+        JSON.stringify({ 
+          error: errorData?.error?.message || 'Error en la respuesta de la IA.' 
+        }), 
+        { status: response.status, headers: { 'Content-Type': 'application/json' } }
+      );
     }
 
     const data = await response.json();
     const message = data.choices?.[0]?.message;
 
-    return new Response(JSON.stringify({ 
-      reply: message?.content || '', 
-      tool_calls: message?.tool_calls || [] 
-    }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return new Response(
+      JSON.stringify({ 
+        reply: message?.content ?? '', 
+        tool_calls: message?.tool_calls ?? [] 
+      }), 
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
 
   } catch (error) {
-    console.error('API Error:', error);
-    return new Response(JSON.stringify({ error: 'Error interno.' }), { status: 500 });
+    console.error('API Internal Error:', error);
+    return new Response(
+      JSON.stringify({ error: 'Error interno en el servidor.' }), 
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    );
   }
 };
+
