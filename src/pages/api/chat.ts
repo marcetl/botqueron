@@ -2,41 +2,7 @@ export const prerender = false; // Para que se ejecute en el servidor bajo deman
 
 import type { APIRoute } from 'astro';
 
-export const POST: APIRoute = async ({ request }) => {
-  try {
-    const { prompt } = await request.json();
-
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${import.meta.env.OPENROUTER_API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        // AQUÍ ELIGES EL MODELO DIRECTAMENTE EN CÓDIGO
-        model: "google/gemini-2.5-flash:free", 
-        messages: [
-          { role: "user", content: prompt }
-        ]
-      })
-    });
-
-    const data = await response.json();
-
-    return new Response(JSON.stringify({ 
-      respuesta: data.choices?.[0]?.message?.content || "Sin respuesta" 
-    }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" }
-    });
-
-  } catch (error) {
-    return new Response(JSON.stringify({ error: "Error en la llamada" }), { status: 500 });
-  }
-};
-
-
-// const OPENROUTER_API_KEY = import.meta.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
+const OPENROUTER_API_KEY = import.meta.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
 
 const SYSTEM_PROMPTS = {
   agenda: `Eres un asistente virtual de IA para una barbería/peluquería llamada "MicroBarber".
@@ -160,7 +126,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const payload = {
-      model: 'google/gemini-2.5-flash',
+      model: "google/gemini-2.5-flash:free",
       messages: finalMessages,
       tools: TOOLS[demoType],
       tool_choice: "auto"
