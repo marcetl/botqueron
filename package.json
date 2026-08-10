@@ -1,0 +1,20 @@
+{
+  "name": "astro-landing",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node node_modules/astro/bin/astro.mjs build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^10.0.6",
+    "@tailwindcss/vite": "^4.2.1",
+    "astro": "^6.1.10",
+    "tailwindcss": "^4.2.1"
+  }
+}

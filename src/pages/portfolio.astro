@@ -1,0 +1,557 @@
+---
+import '../styles/global.css';
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
+
+// === CONFIGURACIÓN DE PORTFOLIOS ===
+const proyectos = [
+  {
+    id: "microbarber",
+    badge: "Caso de Éxito",
+    title: "MicroBarber.",
+    description: "Nuestro sistema maestro para revolucionar la gestión de citas e integrarse con WhatsApp. Nació para optimizar agendas complejas como barberías o salones, pero su modularidad al conectarse a nuestro agente de IA se adapta a clínicas, consultorías y reservas de cualquier negocio.",
+    features: [
+      {
+        title: "Control Total",
+        description: "Mira todas tus citas unificadas en un tablero limpio y rápido. Podrás mover, cancelar o gestionar tiempos de servicio con un solo clic.",
+        image: "/foto_dashboard_jcbarber.png",
+        alt: "Demo de interfaz y calendario de MicroBarber"
+      },
+      {
+        title: "La IA en WhatsApp",
+        description: "Tus clientes piden cita enviando un simple mensaje. Nuestro bot ve la disponibilidad en tiempo real gracias al calendario inteligente.",
+        image: "/calendario_jcbarber.png",
+        alt: "Demo de bot de WhatsApp MicroBarber y conexión de calendario"
+      }
+    ]
+  }
+];
+---
+
+<!DOCTYPE html>
+<html lang="es" class="bg-slate-50 text-ink scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio y Demos | Botquerón</title>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col font-body antialiased text-ink">
+
+  <!-- Navbar -->
+  <header class="fixed top-0 w-full z-50 glass-panel border-b border-white/20 transition-all duration-300">
+    <div class="w-full max-w-[90rem] mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+      <a href="/" class="font-display font-bold text-3xl md:text-4xl tracking-tight text-primary flex items-center">
+        Botquerón
+      </a>
+      
+      <nav class="hidden md:flex items-center gap-8 font-semibold text-sm">
+        <a href="/" class="text-ink-light hover:text-primary transition-colors">Inicio</a>
+        <a href="/portfolio/" class="text-primary transition-colors font-bold">Conoce nuestro trabajo</a>
+        <a href="/#planes" class="text-ink-light hover:text-primary transition-colors">Planes</a>
+        <a href="/#contacto" class="btn-primary px-6 py-2.5 text-sm font-bold tracking-wide">Empezar ahora</a>
+      </nav>
+      
+      <a href="/#contacto" class="md:hidden btn-primary px-5 py-2 text-xs font-bold tracking-wide">Contactar</a>
+    </div>
+  </header>
+
+  <!-- Portfolio Content Iteration -->
+  <main class="flex-1 flex flex-col pt-20">
+    
+    {proyectos.map((proyecto, pIndex) => (
+      <div class="flex flex-col" id={proyecto.id}>
+        
+        <!-- Header del proyecto -->
+        <section class="py-20 md:py-32 px-6 flex flex-col items-center bg-white text-center border-b border-slate-100 relative overflow-hidden">
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
+            <div class="absolute top-[20%] left-[20%] w-[40%] h-[60%] rounded-full bg-primary/5 blur-[100px]"></div>
+          </div>
+          
+          <div class="relative z-10 max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary font-bold text-xs tracking-wide uppercase mb-6 border border-secondary/20">
+              {proyecto.badge}
+            </div>
+            <h1 class="font-display font-bold text-5xl md:text-6xl lg:text-7xl mb-6 text-balance text-ink tracking-tight">{proyecto.title}</h1>
+            <p class="text-lg md:text-xl text-ink-light text-balance max-w-3xl mx-auto leading-relaxed">{proyecto.description}</p>
+          </div>
+        </section>
+
+        <!-- Gallery / Demo Features -->
+        <section class="py-20 md:py-32 px-6 bg-[#F8FAFC]">
+          <div class="max-w-6xl mx-auto flex flex-col gap-24 lg:gap-32">
+            
+            {proyecto.features.map((feature, fIndex) => {
+              const isEven = fIndex % 2 === 0;
+              return (
+                <div class={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-16 items-center`}>
+                  
+                  <div class="flex-1 w-full lg:w-1/2">
+                    <figure class="relative rounded-3xl overflow-hidden soft-shadow border border-slate-200/60 bg-white group cursor-zoom-in">
+                      <div class="absolute top-0 inset-x-0 h-10 bg-slate-50/80 backdrop-blur-md border-b border-slate-200 flex items-center px-4 gap-2 z-10">
+                        <div class="flex gap-1.5">
+                          <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                          <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                          <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        </div>
+                      </div>
+                      <div class="overflow-hidden pt-10">
+                        <img src={feature.image} alt={feature.alt} class="zoomable w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                      </div>
+                      <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors duration-300 pointer-events-none z-20"></div>
+                    </figure>
+                  </div>
+
+                  <div class="flex-1 w-full lg:w-1/2 flex flex-col justify-center">
+                    <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6">
+                      <span class="font-display font-bold text-xl">{fIndex + 1}</span>
+                    </div>
+                    <h3 class="font-display font-bold text-3xl mb-4 text-ink">{feature.title}</h3>
+                    <p class="text-lg text-ink-light leading-relaxed">{feature.description}</p>
+                  </div>
+
+                </div>
+              );
+            })}
+
+          </div>
+        </section>
+
+      </div>
+    ))}
+
+    <!-- Demos Interactivas -->
+    <section class="py-24 px-6 bg-white border-t border-slate-100" id="demos">
+      <div class="max-w-6xl mx-auto flex flex-col gap-16">
+        <div class="text-center">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-bold text-xs tracking-wide uppercase mb-4 border border-primary/20">
+            Prueba en Vivo
+          </div>
+          <h2 class="font-display font-bold text-4xl md:text-5xl mb-4 text-ink tracking-tight">Demos Interactivas</h2>
+          <p class="text-xl text-ink-light max-w-2xl mx-auto">Habla en tiempo real con nuestros agentes de IA integrados y comprueba cómo responderán a tus clientes.</p>
+        </div>
+
+        <div class="flex flex-col gap-12">
+          
+          <!-- Demo Agenda Visual -->
+          <div class="flex flex-col lg:flex-row rounded-3xl overflow-hidden soft-shadow border border-slate-200 bg-[#0a0a0a] relative mb-12">
+            <!-- Panel Chat -->
+            <div class="flex flex-col w-full lg:w-[40%] border-b lg:border-b-0 lg:border-r border-white/10 flex-shrink-0">
+              <div class="bg-[#111] p-4 border-b border-white/10 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white text-sm font-bold tracking-wider">MB</div>
+                <div>
+                  <h3 class="font-bold text-white leading-tight tracking-wide">MicroBarber IA</h3>
+                  <p class="text-xs text-white/50">Online • Pack Agenda</p>
+                </div>
+              </div>
+              <div id="chat-agenda" class="flex-1 h-[400px] lg:h-[600px] p-4 overflow-y-auto flex flex-col gap-4 bg-[#0a0a0a] scrollbar-thin">
+                <div class="bg-[#222] text-white p-3.5 rounded-2xl rounded-tl-sm self-start max-w-[85%] text-sm leading-relaxed border border-white/5 shadow-lg">
+                  ¡Hola! Soy el asistente de MicroBarber. ¿Quieres agendar una cita?
+                </div>
+              </div>
+              <div class="p-3 bg-[#111] border-t border-white/10">
+                <form class="flex gap-2 chat-form" data-demo="agenda">
+                  <input type="text" placeholder="Escribe un mensaje..." class="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/30 transition-colors disabled:opacity-50" required>
+                  <button type="submit" class="bg-white text-black px-5 rounded-full font-bold hover:bg-slate-200 transition-colors text-sm shadow-md disabled:opacity-50">Enviar</button>
+                </form>
+              </div>
+            </div>
+            
+            <!-- Panel Calendario UI -->
+            <div class="flex-1 p-6 bg-[#0f0f0f] flex flex-col h-[400px] lg:h-[685px] overflow-hidden">
+              <div class="flex justify-between items-end mb-6">
+                <div>
+                  <h3 class="text-white font-display font-bold text-2xl">Calendario</h3>
+                  <p class="text-white/50 text-sm">Próximas citas de hoy</p>
+                </div>
+                <div class="flex gap-2 text-xs font-medium text-white/70">
+                  <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-white"></div> Álex</span>
+                  <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-slate-500"></div> Laura</span>
+                </div>
+              </div>
+              <div class="flex-1 bg-[#1a1a1a] rounded-2xl border border-white/5 p-4 overflow-y-auto scrollbar-thin">
+                <div class="flex flex-col relative" id="agenda-grid">
+                  <!-- Horas del día base -->
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">10:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">11:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">12:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">13:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">16:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">17:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">18:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">19:00</span><div class="flex-1 h-px"></div></div>
+                  
+                  <!-- Contenedor absoluto para los bloques de citas -->
+                  <div id="agenda-blocks" class="absolute inset-0 pl-16 py-2 pointer-events-none"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demo Menu AI Visual -->
+          <div class="flex flex-col lg:flex-row rounded-3xl overflow-hidden shadow-2xl border border-[#3e2723]/20 bg-[#0c0806] relative">
+            <!-- Panel Chat -->
+            <div class="flex flex-col w-full lg:w-[40%] border-b lg:border-b-0 lg:border-r border-[#ffd54f]/10 flex-shrink-0 relative">
+              <div class="bg-[#170e0a] p-4 border-b border-[#ffd54f]/10 flex justify-between items-center relative z-10">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-[#ffd54f]/20 flex items-center justify-center text-[#ffd54f] text-sm font-bold tracking-wider">BD</div>
+                  <div>
+                    <h3 class="font-bold text-[#ffd54f] leading-tight tracking-wide">Botquerón Dorado</h3>
+                    <p class="text-xs text-[#ffd54f]/70">Pack Hostelería</p>
+                  </div>
+                </div>
+                <button type="button" id="toggle-menu-btn" class="text-[10px] uppercase tracking-wider font-bold px-3 py-1.5 border border-[#ffd54f]/30 rounded-full text-[#ffd54f] hover:bg-[#ffd54f]/10 transition-colors">Modificar Carta</button>
+              </div>
+
+              <!-- Menu Editor Overlay (hidden by default) -->
+              <div id="menu-editor" class="absolute inset-x-0 top-[73px] bottom-0 bg-[#0c0806] z-30 p-4 hidden flex-col border-r border-[#ffd54f]/10">
+                <h4 class="text-[#ffd54f] font-bold mb-3 text-sm">Carta de tu negocio</h4>
+                <p class="text-[#ffd54f]/60 text-xs mb-3">Edita el texto abajo para cambiar los productos de la carta. La IA lo leerá al instante.</p>
+                <textarea id="menu-context-input" class="flex-1 bg-black/20 border border-[#ffd54f]/20 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-[#ffd54f]/50 resize-none font-mono">
+Entrantes: Ensaladilla (8€), Porra (7€), Fritura (15€).
+Principales: Espetos (6€/ud), Paella (18€/pax), Chuletón (25€).
+Postres: Tarta de queso (6€), Flan (5€).
+Alérgenos: Fritura lleva gluten. Tarta lleva lácteos.
+                </textarea>
+                <button type="button" id="close-menu-btn" class="mt-4 bg-[#ffd54f] text-[#3e2723] py-2.5 rounded-xl font-bold text-sm shadow-md hover:bg-[#ffca28] transition-colors">Guardar y Cerrar</button>
+              </div>
+
+              <div id="chat-menu" class="flex-1 h-[400px] lg:h-[600px] p-4 overflow-y-auto flex flex-col gap-4 bg-[#0c0806] scrollbar-thin relative z-10">
+                <div class="bg-[#170e0a] text-white p-3.5 rounded-2xl rounded-tl-sm self-start max-w-[85%] text-sm leading-relaxed border border-[#ffd54f]/10 shadow-lg">
+                  Bienvenido. Pregúntame sobre la carta o dime qué quieres pedir.
+                </div>
+              </div>
+              <div class="p-3 bg-[#170e0a] border-t border-[#ffd54f]/10 relative z-10">
+                <form class="flex gap-2 chat-form" data-demo="menu">
+                  <input type="text" placeholder="Ponme dos raciones de espetos..." class="flex-1 bg-black/20 border border-[#ffd54f]/30 rounded-full px-4 py-2.5 text-sm text-white placeholder-[#ffd54f]/50 focus:outline-none focus:border-[#ffd54f]/60 transition-colors disabled:opacity-50" required>
+                  <button type="submit" class="bg-[#ffd54f] text-[#3e2723] px-5 rounded-full font-bold hover:bg-[#ffca28] transition-colors text-sm shadow-md disabled:opacity-50">Enviar</button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Panel Comanda UI -->
+            <div class="flex-1 p-6 bg-[#110a08] flex flex-col h-[400px] lg:h-[685px] overflow-hidden">
+              <div class="flex justify-between items-end mb-6">
+                <div>
+                  <h3 class="text-[#ffd54f] font-display font-bold text-2xl">Mesa 4</h3>
+                  <p class="text-[#ffd54f]/50 text-sm">Comanda en curso</p>
+                </div>
+                <div class="text-[#ffd54f] font-bold text-2xl" id="menu-total">0.00€</div>
+              </div>
+              <div class="flex-1 bg-[#0c0806] rounded-2xl border border-[#ffd54f]/10 p-4 overflow-y-auto scrollbar-thin flex flex-col gap-3 relative" id="menu-grid">
+                <div class="absolute inset-0 flex items-center justify-center text-[#ffd54f]/30 text-sm font-medium transition-opacity" id="menu-empty">
+                  La comanda está vacía
+                </div>
+                <!-- JS rellenará esto con los platos pedidos -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to action -->
+    <section class="py-24 px-6 bg-primary text-white text-center relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-[50%] h-[100%] rounded-full bg-white/10 blur-[100px]"></div>
+      <div class="relative z-10 max-w-3xl mx-auto">
+        <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 text-balance tracking-tight">¿Quieres esto para tu día a día?</h2>
+        <p class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">Deja de perder horas contestando WhatsApps de "a qué hora tienes hueco". Automatiza y relájate.</p>
+        <a href="/#contacto" class="inline-flex items-center justify-center bg-white text-primary px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
+          Empezar a Automatizar
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-ink text-slate-400 py-12 px-6 shrink-0">
+    <div class="max-w-7xl mx-auto flex flex-col items-center">
+      <div class="font-display font-bold text-3xl text-white mb-6 flex items-center gap-2">
+        Botquerón<span class="text-primary">.</span>
+      </div>
+      <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-sm font-medium">
+        <a href="mailto:hola@botqueron.com" class="hover:text-white transition-colors">hola@botqueron.com</a>
+        <span class="hidden md:block w-1 h-1 rounded-full bg-slate-700"></span>
+        <a href={`https://wa.me/${whatsappNumber}`} class="hover:text-white transition-colors">WhatsApp Directo</a>
+        <span class="hidden md:block w-1 h-1 rounded-full bg-slate-700"></span>
+        <span>Málaga, España © 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Moderno -->
+  <div id="lightbox" class="fixed inset-0 bg-ink/95 backdrop-blur-sm z-[100] hidden flex-col items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300">
+    <button id="lightbox-close" class="absolute top-6 right-6 text-white/70 hover:text-white p-2 transition-colors cursor-pointer z-[110]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div id="lightbox-wrapper" class="relative max-w-[90vw] max-h-[90vh] w-full h-full flex items-center justify-center transform scale-95 transition-transform duration-300">
+      <img id="lightbox-img" src="" class="max-w-full max-h-full object-contain rounded-xl soft-shadow" />
+    </div>
+  </div>
+
+  <!-- WhatsApp Floating Widget -->
+  <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-xl hover:scale-110 hover:shadow-2xl transition-all duration-300 flex items-center justify-center group" aria-label="Contactar por WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    </svg>
+    <!-- Tooltip -->
+    <div class="absolute right-full mr-4 bg-white text-ink text-sm font-bold py-2 px-4 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-slate-100">
+      ¡Hablemos por WhatsApp!
+    </div>
+  </a>
+
+  <script is:inline>
+    const zoomables = document.querySelectorAll('.zoomable');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxWrapper = document.getElementById('lightbox-wrapper');
+
+    function openLightbox(src) {
+      if (lightboxImg instanceof HTMLImageElement) {
+        lightboxImg.src = src;
+      }
+      lightbox?.classList.remove('hidden');
+      void lightbox?.offsetWidth;
+      lightbox?.classList.remove('opacity-0');
+      lightboxWrapper?.classList.remove('scale-95');
+      lightboxWrapper?.classList.add('scale-100');
+      document.body.style.overflow = 'hidden'; 
+    }
+
+    function closeLightbox() {
+      lightbox?.classList.add('opacity-0');
+      lightboxWrapper?.classList.remove('scale-100');
+      lightboxWrapper?.classList.add('scale-95');
+      setTimeout(() => {
+        lightbox?.classList.add('hidden');
+        if (lightboxImg instanceof HTMLImageElement) {
+          lightboxImg.src = '';
+        }
+        document.body.style.overflow = '';
+      }, 300);
+    }
+
+    zoomables.forEach(img => {
+      img.addEventListener('click', () => {
+        if (img instanceof HTMLImageElement) openLightbox(img.src);
+      });
+    });
+
+    lightboxClose?.addEventListener('click', closeLightbox);
+    lightbox?.addEventListener('click', (e) => {
+      if(e.target === lightbox || e.target === lightboxWrapper) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Menu Editor Logic
+    const toggleMenuBtn = document.getElementById('toggle-menu-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const menuEditor = document.getElementById('menu-editor');
+    const menuContextInput = document.getElementById('menu-context-input');
+
+    toggleMenuBtn?.addEventListener('click', () => {
+      menuEditor?.classList.remove('hidden');
+      menuEditor?.classList.add('flex');
+    });
+
+    closeMenuBtn?.addEventListener('click', () => {
+      menuEditor?.classList.add('hidden');
+      menuEditor?.classList.remove('flex');
+    });
+
+    // Chat & Tool Calling Logic
+    const chatForms = document.querySelectorAll('.chat-form');
+    
+    const chatHistory = { agenda: [], menu: [] };
+    let calendarState = []; 
+    let orderState = []; 
+
+    function renderCalendar() {
+      const grid = document.getElementById('agenda-blocks');
+      if (!grid) return;
+      grid.innerHTML = '';
+      calendarState.forEach(appt => {
+        const hourMatch = appt.time.match(/^(\d+)/);
+        if (!hourMatch) return;
+        const hour = parseInt(hourMatch[1]);
+        if (hour >= 10 && hour <= 19) {
+          const rowHeight = 49; // approx height of each hour row in px
+          const top = (hour - 10) * rowHeight;
+          const div = document.createElement('div');
+          div.className = `absolute left-16 right-4 p-2 rounded-lg text-[11px] font-bold shadow-md flex justify-between items-center transition-all animate-pulse-once ${appt.staff === 'Álex' ? 'bg-white text-black' : 'bg-slate-500 text-white'}`;
+          div.style.top = `${top + 8}px`;
+          div.style.height = '32px';
+          div.innerHTML = `<span>${appt.time} - ${appt.name}</span><span class="opacity-80 font-normal">${appt.service}</span>`;
+          grid.appendChild(div);
+        }
+      });
+    }
+
+    function renderOrder() {
+      const grid = document.getElementById('menu-grid');
+      const totalEl = document.getElementById('menu-total');
+      const emptyEl = document.getElementById('menu-empty');
+      if (!grid || !totalEl || !emptyEl) return;
+      
+      Array.from(grid.children).forEach(c => {
+        if (c.id !== 'menu-empty') c.remove();
+      });
+
+      if (orderState.length === 0) {
+        emptyEl.style.opacity = '1';
+        totalEl.textContent = '0.00€';
+        return;
+      }
+
+      emptyEl.style.opacity = '0';
+      let total = 0;
+      orderState.forEach(item => {
+        total += item.price;
+        const div = document.createElement('div');
+        div.className = 'flex justify-between items-center p-3 rounded-xl bg-[#170e0a] border border-[#ffd54f]/20 text-[#ffd54f] animate-pulse-once shadow-md';
+        div.innerHTML = `
+          <div class="flex gap-3 items-center">
+            <span class="w-6 h-6 rounded-full bg-[#ffd54f]/20 flex items-center justify-center text-xs font-bold">${item.qty}</span>
+            <span class="font-bold text-sm tracking-wide">${item.name}</span>
+          </div>
+          <span class="font-mono font-bold text-sm">${item.price.toFixed(2)}€</span>
+        `;
+        grid.appendChild(div);
+      });
+      totalEl.textContent = `${total.toFixed(2)}€`;
+    }
+
+    function appendMessage(demoType, role, text) {
+      if (!text) return;
+      const container = document.getElementById(`chat-${demoType}`);
+      if (!container) return;
+      
+      const div = document.createElement('div');
+      div.className = `p-3.5 rounded-2xl text-sm max-w-[85%] shadow-md break-words leading-relaxed whitespace-pre-wrap ${role === 'user' ? 'self-end rounded-tr-sm' : 'self-start rounded-tl-sm'}`;
+      
+      if (demoType === 'agenda') {
+        if (role === 'user') div.classList.add('bg-white', 'text-ink');
+        else div.classList.add('bg-[#222]', 'text-white', 'border', 'border-white/5');
+      } else {
+        if (role === 'user') div.classList.add('bg-[#ffd54f]', 'text-[#3e2723]');
+        else div.classList.add('bg-[#170e0a]', 'text-white', 'border', 'border-[#ffd54f]/10');
+      }
+      
+      div.textContent = text;
+      container.appendChild(div);
+      container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+    }
+
+    async function sendChatRequest(demoType, input, button) {
+      const loadingId = `loading-${Date.now()}`;
+      const container = document.getElementById(`chat-${demoType}`);
+      const loadingDiv = document.createElement('div');
+      loadingDiv.id = loadingId;
+      loadingDiv.className = `p-3.5 rounded-2xl text-sm max-w-[85%] shadow-md self-start rounded-tl-sm animate-pulse ${demoType === 'agenda' ? 'bg-[#222] text-white/50 border border-white/5' : 'bg-[#170e0a] text-white/50 border border-[#ffd54f]/10'}`;
+      loadingDiv.textContent = 'Procesando...';
+      container?.appendChild(loadingDiv);
+      container?.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+
+      try {
+        const payload = {
+          demoType: demoType,
+          messages: chatHistory[demoType]
+        };
+
+        if (demoType === 'menu' && menuContextInput) {
+          payload.context = menuContextInput.value;
+        }
+
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        
+        const data = await res.json();
+        document.getElementById(loadingId)?.remove();
+        
+        if (data.reply) {
+          appendMessage(demoType, 'assistant', data.reply);
+        }
+
+        // Manejar llamadas a funciones (tool_calls)
+        if (data.tool_calls && data.tool_calls.length > 0) {
+          const toolResults = [];
+          
+          for (const call of data.tool_calls) {
+            const name = call.function.name;
+            const args = JSON.parse(call.function.arguments);
+            
+            if (name === 'book_appointment') {
+              calendarState.push({ time: args.time, name: args.customer_name, service: args.service, staff: args.staff });
+              renderCalendar();
+              toolResults.push({ role: "tool", tool_call_id: call.id, name: name, content: "Cita agendada correctamente." });
+            } else if (name === 'cancel_appointment') {
+              calendarState = calendarState.filter(a => a.time !== args.time);
+              renderCalendar();
+              toolResults.push({ role: "tool", tool_call_id: call.id, name: name, content: "Cita cancelada correctamente." });
+            } else if (name === 'add_to_order') {
+              orderState.push({ name: args.item_name, qty: args.quantity, price: args.price });
+              renderOrder();
+              toolResults.push({ role: "tool", tool_call_id: call.id, name: name, content: "Añadido al pedido." });
+            } else if (name === 'remove_from_order') {
+              orderState = orderState.filter(a => a.name.toLowerCase() !== args.item_name.toLowerCase());
+              renderOrder();
+              toolResults.push({ role: "tool", tool_call_id: call.id, name: name, content: "Eliminado del pedido." });
+            }
+          }
+
+          // Añadir el paso de tool_call al historial
+          chatHistory[demoType].push({ role: 'assistant', content: data.reply || null, tool_calls: data.tool_calls });
+          chatHistory[demoType].push(...toolResults);
+
+          // Si no hubo respuesta de texto pero sí tool calls, hacer una 2ª petición silenciosa para que la IA confirme
+          if (!data.reply) {
+             return sendChatRequest(demoType, input, button); // llamada recursiva
+          }
+        } else {
+          // Solo respuesta normal
+          chatHistory[demoType].push({ role: 'assistant', content: data.reply });
+        }
+
+      } catch (err) {
+        document.getElementById(loadingId)?.remove();
+        appendMessage(demoType, 'assistant', 'Error de conexión.');
+      } finally {
+        if (input && button) {
+          input.disabled = false;
+          button.disabled = false;
+          input.focus({ preventScroll: true });
+        }
+      }
+    }
+
+    chatForms.forEach(form => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = form.querySelector('input');
+        const button = form.querySelector('button');
+        if (!(input instanceof HTMLInputElement) || !(button instanceof HTMLButtonElement)) return;
+        
+        const text = input.value.trim();
+        const demoType = form.getAttribute('data-demo');
+        
+        if (!text || !demoType) return;
+        
+        appendMessage(demoType, 'user', text);
+        chatHistory[demoType].push({ role: 'user', content: text });
+        
+        input.value = '';
+        input.disabled = true;
+        button.disabled = true;
+        
+        await sendChatRequest(demoType, input, button);
+      });
+    });
+  </script>
+</body>
+</html>

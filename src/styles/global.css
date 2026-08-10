@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  /* Málaga Beach & Espeto Palette */
+  --color-canvas: #FAFAFA; /* Warm White / Bright Sand */
+  --color-ink: #1E293B; /* Deep Slate */
+  --color-ink-light: #475569; /* Slate 600 */
+  
+  --color-primary: #2563EB; /* Botquerón Blue / Ocean */
+  --color-primary-dark: #1D4ED8; /* Deep Ocean */
+  
+  --color-secondary: #EA580C; /* Espeto Fire / Sunset Orange */
+  
+  --color-surface: #F1F5F9; /* Cool Sand */
+  --color-outline: #1E293B; /* Strong Borders */
+  
+  --font-display: "Unbounded", system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+html {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Soft shadows for premium feel */
+.soft-shadow {
+  box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.soft-shadow:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Primary Button variation */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #F8FAFC;
+  border-radius: 9999px; /* Pill shape for modern look */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.23);
+  background-color: var(--color-primary-dark);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Animation */
+.slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.slide-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Espetos Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+
+.slide-left {
+  opacity: 0;
+  transform: translateX(30vw);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-right {
+  opacity: 0;
+  transform: translateX(-30vw);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+::selection {
+  background-color: var(--color-secondary);
+  color: var(--color-ink);
+}

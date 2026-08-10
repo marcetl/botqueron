@@ -1,0 +1,825 @@
+---
+import '../styles/global.css';
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
+---
+
+<!DOCTYPE html>
+<html lang="es" class="bg-canvas text-ink scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botquerón | IA con acento local al servicio de tu negocio</title>
+  <meta name="description" content="Botquerón automatiza la atención al cliente y las reservas utilizando mensajería: barberías, hostelería, clínicas, peluquerías y despachos.">
+  <meta name="keywords" content="inteligencia artificial, autonomos, IA para pymes, automatizacion WhatsApp, chatbot reservas, asistente virtual negocio, Malaga, hostelería, clínica, veterinaria, peluquería, barbería, asesoría, manicura, botqueron">
+  <meta name="author" content="Botquerón">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://botqueron.com/">
+  <meta name="theme-color" content="#2563EB">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://botqueron.com/">
+  <meta property="og:description" content="Automatiza la atención al cliente y las reservas de tu negocio con IA. Menos pantallas, más tiempo para tu negocio.">
+  <meta property="og:image" content="https://botqueron.com/og-image.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://botqueron.com/">
+  <meta property="twitter:title" content="Botquerón | IA con acento local al servicio de tu negocio">
+  <meta property="twitter:description" content="Automatiza la atención al cliente, reservas y WhatsApp de tu negocio con soluciones de Inteligencia Artificial pensadas para tu negocio.">
+  <meta property="twitter:image" content="https://botqueron.com/og-image.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Preload del poster del hero para mejorar el LCP mientras carga el vídeo -->
+  <link rel="preload" as="image" href="/video-poster.jpg" fetchpriority="high">
+
+  <!-- Datos estructurados para SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Botquerón",
+    "url": "https://botqueron.com/",
+    "logo": "https://botqueron.com/og-image.jpg",
+    "description": "Asistente IA para automatizar la atención al cliente y las reservas de tu negocio. Menos pantallas, más tiempo para tu negocio.",
+    "areaServed": "ES",
+    "address": { "@type": "PostalAddress", "addressLocality": "Málaga", "addressCountry": "ES" },
+    "sameAs": []
+  })} />
+  <style is:global>
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-primary/20 selection:text-primary font-body antialiased text-ink bg-[#F8FAFC]">
+
+  <!-- Navbar -->
+  <header class="fixed top-0 w-full z-50 glass-panel border-b border-white/20 transition-all duration-300">
+    <div class="w-full max-w-[90rem] mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="font-display font-bold text-3xl md:text-4xl tracking-tight text-primary flex items-center">
+        Botquerón
+      </a>
+      
+      <nav class="hidden md:flex items-center gap-8 font-semibold text-sm">
+        <a href="#soluciones" class="text-ink-light hover:text-primary transition-colors">Soluciones</a>
+        <a href="#como-funciona" class="text-ink-light hover:text-primary transition-colors">Cómo funciona</a>
+        <a href="#planes" class="text-ink-light hover:text-primary transition-colors">Planes</a>
+        <a href="/portfolio/" class="text-ink-light hover:text-primary transition-colors">Conoce nuestro trabajo</a>
+        <a href="#contacto" class="btn-primary px-6 py-2.5 text-sm font-bold tracking-wide">Empezar ahora</a>
+      </nav>
+      
+      <a href="#contacto" class="md:hidden btn-primary px-5 py-2 text-xs font-bold tracking-wide">Contactar</a>
+    </div>
+  </header>
+
+  <!-- Floating Espetos -->
+  <div id="espeto-left" class="fixed top-[30%] -left-8 z-40 transform transition-transform duration-1000 ease-in-out pointer-events-none drop-shadow-2xl opacity-90 hidden md:block">
+    <svg width="200" height="260" viewBox="0 0 100 150" class="animate-float">
+      <!-- Vara -->
+      <line x1="10" y1="140" x2="90" y2="10" stroke="#b45309" stroke-width="4" stroke-linecap="round"/>
+      <!-- Fuego base -->
+      <path d="M0 140 Q 20 120 40 140 Q 20 160 0 140" fill="#ea580c" opacity="0.6"/>
+      <path d="M10 140 Q 20 130 30 140 Q 20 150 10 140" fill="#fef08a" opacity="0.8"/>
+      <!-- Sardinas -->
+      <g transform="translate(30, 95) rotate(-35)"><path d="M0,0 C10,-12 35,-6 45,0 C35,6 10,12 0,0" fill="#cbd5e1" stroke="#64748b"/><circle cx="8" cy="-2" r="1.5" fill="#0f172a"/><path d="M40,-3 L48,-8 L43,0 L48,8 L40,3 Z" fill="#cbd5e1"/></g>
+      <g transform="translate(45, 65) rotate(-35)"><path d="M0,0 C10,-12 35,-6 45,0 C35,6 10,12 0,0" fill="#cbd5e1" stroke="#64748b"/><circle cx="8" cy="-2" r="1.5" fill="#0f172a"/><path d="M40,-3 L48,-8 L43,0 L48,8 L40,3 Z" fill="#cbd5e1"/></g>
+      <g transform="translate(60, 35) rotate(-35)"><path d="M0,0 C10,-12 35,-6 45,0 C35,6 10,12 0,0" fill="#cbd5e1" stroke="#64748b"/><circle cx="8" cy="-2" r="1.5" fill="#0f172a"/><path d="M40,-3 L48,-8 L43,0 L48,8 L40,3 Z" fill="#cbd5e1"/></g>
+    </svg>
+  </div>
+
+  <div id="espeto-right" class="fixed top-[50%] -right-8 z-40 transform transition-transform duration-1000 ease-in-out pointer-events-none drop-shadow-2xl opacity-90 hidden md:block">
+    <svg width="200" height="260" viewBox="0 0 100 150" class="animate-float" style="animation-delay: 2s;">
+      <!-- Vara -->
+      <line x1="90" y1="140" x2="10" y2="10" stroke="#b45309" stroke-width="4" stroke-linecap="round"/>
+      <!-- Fuego base -->
+      <path d="M100 140 Q 80 120 60 140 Q 80 160 100 140" fill="#ea580c" opacity="0.6"/>
+      <path d="M90 140 Q 80 130 70 140 Q 80 150 90 140" fill="#fef08a" opacity="0.8"/>
+      <!-- Sardinas -->
+      <g transform="translate(70, 95) rotate(-145)"><path d="M0,0 C10,-12 35,-6 45,0 C35,6 10,12 0,0" fill="#cbd5e1" stroke="#64748b"/><circle cx="8" cy="-2" r="1.5" fill="#0f172a"/><path d="M40,-3 L48,-8 L43,0 L48,8 L40,3 Z" fill="#cbd5e1"/></g>
+      <g transform="translate(55, 65) rotate(-145)"><path d="M0,0 C10,-12 35,-6 45,0 C35,6 10,12 0,0" fill="#cbd5e1" stroke="#64748b"/><circle cx="8" cy="-2" r="1.5" fill="#0f172a"/><path d="M40,-3 L48,-8 L43,0 L48,8 L40,3 Z" fill="#cbd5e1"/></g>
+      <g transform="translate(40, 35) rotate(-145)"><path d="M0,0 C10,-12 35,-6 45,0 C35,6 10,12 0,0" fill="#cbd5e1" stroke="#64748b"/><circle cx="8" cy="-2" r="1.5" fill="#0f172a"/><path d="M40,-3 L48,-8 L43,0 L48,8 L40,3 Z" fill="#cbd5e1"/></g>
+    </svg>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center justify-center min-h-[85vh]">
+      <!-- Background Video -->
+      <div class="absolute inset-0 w-full h-full z-0">
+        <video
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="metadata"
+          poster="/video-poster.jpg"
+          class="w-full h-full object-cover"
+        >
+          <source src="/video_botqueron.mp4" type="video/mp4" />
+        </video>
+        <!-- Overlay sutil sin difuminado para ver el vídeo 100% nítido -->
+        <div class="absolute inset-0 bg-ink/40"></div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-6 relative z-10 text-center slide-up is-visible">
+        <h1 class="font-display font-bold text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight mb-8 text-balance text-white">
+          Automatiza tu<br/>
+          <span id="rotating-text" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-orange-400 drop-shadow-sm inline-block min-w-[280px] transition-opacity duration-500">Negocio.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed text-balance">
+          El empleado digital para tu negocio: responde a tus clientes, agenda citas y filtra consultas 24/7. Recupera horas cada semana gracias a la IA.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#planes" class="btn-primary px-8 py-4 font-bold text-center text-sm md:text-base w-full sm:w-auto flex items-center justify-center gap-2 border border-primary-dark">
+            Ver los planes
+          </a>
+          <a href="#soluciones" class="px-8 py-4 font-bold text-center text-sm md:text-base w-full sm:w-auto text-white hover:bg-white/10 transition-colors flex items-center justify-center rounded-xl border border-white/20 backdrop-blur-sm">
+            Descubrir más →
+          </a>
+        </div>
+
+        <!-- Barra de confianza: señales clave para autónomos/pymes que evalúan contratar software -->
+        <div class="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-white/70 text-xs md:text-sm font-semibold uppercase tracking-wide">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-secondary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2l7 3v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V5l7-3z"/></svg>
+            Cumplimiento RGPD
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-secondary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Sin permanencia
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-secondary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 21c0-3.87-3.58-7-8-7s-8 3.13-8 7"/><circle cx="12" cy="7" r="4"/></svg>
+            Soporte humano en español
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUCIONES SECTION -->
+    <section id="soluciones" class="py-24 bg-white relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16 slide-up">
+          <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight mb-4 text-ink">Nada de estrés.<br>Todo controlado.</h2>
+          <p class="text-lg text-ink-light">Ya seas autónomo o tengas un pequeño equipo, tu IA se encarga de cada interacción con el cliente mientras tú te centras en lo que realmente importa.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- 01 Boquerón (Pez) -->
+          <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 soft-shadow slide-up transition-transform duration-300 hover:-translate-y-2">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 1.18 0 2.93-.28 3.69-1.22A2.43 2.43 0 0 0 19 6c0 1.25.5 2.4 1.5 3-1 .6-1.5 1.75-1.5 3a2.43 2.43 0 0 0-.31 1.22c-.76-.94-2.51-1.22-3.69-1.22-3.56 0-7.56-2.54-8.5-6Z" /><path d="M2 16s1.5-1 3-1"/><path d="M2 12s1.5-1 3-1"/><path d="M2 8s1.5-1 3-1"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-xl mb-3 text-ink">Ágil como un Botquerón</h3>
+            <p class="text-ink-light leading-relaxed">Tus clientes nunca esperan. El sistema entiende de qué le hablan, resuelve dudas y mantiene un tono natural al instante.</p>
+          </div>
+
+          <!-- 02 Sol (Málaga) -->
+          <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 soft-shadow slide-up transition-transform duration-300 hover:-translate-y-2" style="transition-delay: 100ms;">
+            <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-500 flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-xl mb-3 text-ink">Agenda Inteligente</h3>
+            <p class="text-ink-light leading-relaxed">Sincronización total con tu calendario. Si hay un hueco libre, el sistema lo llena solo. Mínimo margen de error y cero cruces.</p>
+          </div>
+
+          <!-- 03 Espeto (Fuego) -->
+          <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 soft-shadow slide-up transition-transform duration-300 hover:-translate-y-2" style="transition-delay: 200ms;">
+            <div class="w-14 h-14 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-xl mb-3 text-ink">Crecimiento al Calor Local</h3>
+            <p class="text-ink-light leading-relaxed">Diseñado para negocios reales y cercanos. Gana todas las batallas de eficiencia y factura más sin perder tu propio estilo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA SECTION -->
+    <section id="como-funciona" class="py-24 bg-[#F8FAFC] [content-visibility:auto] [contain-intrinsic-size:1px_700px]">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16 slide-up">
+          <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight mb-4 text-ink">De cero a automatizado<br>en 3 pasos</h2>
+          <p class="text-lg text-ink-light">Sin conocimientos técnicos. Nosotros montamos tu asistente, tú solo lo apruebas.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 relative">
+          <div class="slide-up">
+            <div class="font-display font-black text-5xl text-primary/20 mb-4">01</div>
+            <h3 class="font-display font-bold text-xl mb-3 text-ink">Cuéntanos tu negocio</h3>
+            <p class="text-ink-light leading-relaxed">Rellenas un formulario de 2 minutos con tus servicios, precios y horarios. Nada de reuniones eternas.</p>
+          </div>
+          <div class="slide-up" style="transition-delay: 100ms;">
+            <div class="font-display font-black text-5xl text-primary/20 mb-4">02</div>
+            <h3 class="font-display font-bold text-xl mb-3 text-ink">Entrenamos tu IA</h3>
+            <p class="text-ink-light leading-relaxed">En 48-72 horas tu asistente está configurado, conectado a tu WhatsApp y a tu calendario.</p>
+          </div>
+          <div class="slide-up" style="transition-delay: 200ms;">
+            <div class="font-display font-black text-5xl text-primary/20 mb-4">03</div>
+            <h3 class="font-display font-bold text-xl mb-3 text-ink">Tú recibes clientes</h3>
+            <p class="text-ink-light leading-relaxed">Revisa la agenda cuando quieras. El resto lo lleva tu empleado digital, 24 horas al día.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENLACES SECTION -->
+    <section class="relative py-16 overflow-hidden bg-primary">
+      <div style="max-width: 1280px; margin: 0px auto; padding: 0 1.5rem;">
+        <!-- Encabezado -->
+        <div style="text-align: center; margin-bottom: 2.5rem; opacity: 1; transform: none;">
+          <p style="font-size: 0.8rem; font-weight: 600; color: rgb(0, 255, 212); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem;">Para tu sector</p>
+          <h2 style="font-family: &quot;Cormorant Garamond&quot;, serif; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 600; color: rgb(247, 248, 248); line-height: 1.2;">
+            Cualquier negocio que viva de las citas. 
+            <span style="color: rgb(0, 255, 212); font-style: italic;">Cualquiera.</span>
+          </h2>
+        </div>
+
+        <div class="landing-industries-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; max-width: 1100px; margin: 0 auto;">
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; border-radius: 6px; border: 1px solid rgb(160, 168, 185); background: rgb(0, 0, 0); cursor: default; font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 700; transition: border-color 0.2s, background 0.2s; user-select: none;">
+            <span style="font-size: 1.1rem; line-height: 1;" role="img" aria-label="Peluquerías">💈</span>Peluquerías
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; border-radius: 6px; border: 1px solid rgb(160, 168, 185); background: rgb(0, 0, 0); cursor: default; font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 700; transition: border-color 0.2s, background 0.2s; user-select: none;">
+            <span style="font-size: 1.1rem; line-height: 1;" role="img" aria-label="Barberías">🪒</span>Barberías
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; border-radius: 6px; border: 1px solid rgb(160, 168, 185); background: rgb(0, 0, 0); cursor: default; font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 700; transition: border-color 0.2s, background 0.2s; user-select: none;">
+            <span style="font-size: 1.1rem; line-height: 1;" role="img" aria-label="Clínicas">🏥</span>Clínicas
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; border-radius: 6px; border: 1px solid rgb(160, 168, 185); background: rgb(0, 0, 0); cursor: default; font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 700; transition: border-color 0.2s, background 0.2s; user-select: none;">
+            <span style="font-size: 1.1rem; line-height: 1;" role="img" aria-label="Fisioterapia">🦴</span>Fisioterapia
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; border-radius: 6px; border: 1px solid rgb(160, 168, 185); background: rgb(0, 0, 0); cursor: default; font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 700; transition: border-color 0.2s, background 0.2s; user-select: none;">
+            <span style="font-size: 1.1rem; line-height: 1;" role="img" aria-label="Psicología">🧠</span>Psicología
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; border-radius: 6px; border: 1px solid rgb(35, 37, 42); background: rgb(22, 23, 24); cursor: default; font-size: 0.9rem; color: rgb(208, 214, 224); font-weight: 500; transition: border-color 0.2s, background 0.2s; user-select: none;">
+            <span style="font-size: 1.1rem; line-height: 1;" role="img" aria-label="Odontología">🦷</span>Odontología
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; border-radius: 6px; border: 1px solid rgb(160, 168, 185); background: rgb(0, 0, 0); cursor: default; font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 700; transition: border-color 0.2s, background 0.2s; user-select: none;">
+            <span style="font-size: 1.1rem; line-height: 1;" role="img" aria-label="Estética y Spa">💅</span>Estética y Spa
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; border-radius: 6px; border: 1px solid rgb(160, 168, 185); background: rgb(0, 0, 0); cursor: default; font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 700; transition: border-color 0.2s, background 0.2s; user-select: none;">
+            <span style="font-size: 1.1rem; line-height: 1;" role="img" aria-label="Entrenamiento">🏋️</span>Entrenamiento
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; border-radius: 6px; border: 1px solid rgb(160, 168, 185); background: rgb(0, 0, 0); cursor: default; font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 700; transition: border-color 0.2s, background 0.2s; user-select: none;">
+            <span style="font-size: 1.1rem; line-height: 1;" role="img" aria-label="Yoga y Pilates">🧘</span>Yoga y Pilates
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; border-radius: 6px; border: 1px solid rgb(160, 168, 185); background: rgb(0, 0, 0); cursor: default; font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 700; transition: border-color 0.2s, background 0.2s; user-select: none;">
+            <span style="font-size: 1.1rem; line-height: 1;" role="img" aria-label="Veterinaria">🐾</span>Veterinaria
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; border-radius: 6px; border: 1px solid rgb(160, 168, 185); background: rgb(0, 0, 0); cursor: default; font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 700; transition: border-color 0.2s, background 0.2s; user-select: none;">
+            <span style="font-size: 1.1rem; line-height: 1;" role="img" aria-label="Óptica">👁️</span>Óptica
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; border-radius: 6px; border: 1px solid rgb(160, 168, 185); background: rgb(0, 0, 0); cursor: default; font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 700; transition: border-color 0.2s, background 0.2s; user-select: none;">
+            <span style="font-size: 1.1rem; line-height: 1;" role="img" aria-label="Y mucho más">✨</span>Y mucho más
+          </div>
+        </div>
+
+        <!-- Subtítulo -->
+        <h3 style="font-family: &quot;Cormorant Garamond&quot;, serif; font-size: clamp(1.35rem, 2.2vw, 1.75rem); font-weight: 600; color: rgb(247, 248, 248); text-align: center; margin-top: 3.5rem; margin-bottom: 1.5rem; line-height: 1.25;">
+          Tres sectores tienen ya 
+          <span style="color: rgb(0, 255, 212); font-style: italic;">su página a medida</span>
+        </h3>
+
+        <!-- Tarjetas inferiores -->
+        <div class="landing-verticals-grid" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 1.5rem; max-width: 1100px; margin: 0 auto;">
+  
+          <!-- Tarjeta Estética -->
+          <a href="https://estetica.botqueron.com/" target="_blank" rel="noopener noreferrer" style="display: flex; flex-direction: column; width: 100%; max-width: 340px; padding: 1.75rem; border-radius: 12px; border: 1px solid rgb(35, 37, 42); background: rgb(22, 23, 24); text-decoration: none; transition: transform 0.2s, border-color 0.2s;" onmouseover="this.style.borderColor='rgb(60, 65, 75)'" onmouseout="this.style.borderColor='rgb(35, 37, 42)'">
+            <span style="display: inline-flex; align-items: center; gap: 0.75rem; font-size: 1.15rem; font-weight: 700; color: rgb(255, 255, 255); margin-bottom: 0.85rem;">
+              <span style="font-size: 1.35rem; line-height: 1;" role="img" aria-hidden="true">💅</span>
+                Estética
+            </span>
+            <p style="font-size: 0.9rem; color: rgb(156, 163, 175); line-height: 1.6; margin: 0 0 1.5rem 0;">
+              Uñas, cejas o pestañas: tus clientas reservan por WhatsApp al instante.
+            </p>
+            <span style="margin-top: auto; font-size: 0.875rem; font-weight: 700; color: rgb(210, 154, 166);">
+              Visitar página 
+              <span aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <!-- Tarjeta Veterinaria -->
+          <a href="https://veterinaria.botqueron.com/" target="_blank" rel="noopener noreferrer" style="display: flex; flex-direction: column; width: 100%; max-width: 340px; padding: 1.75rem; border-radius: 12px; border: 1px solid rgb(35, 37, 42); background: rgb(22, 23, 24); text-decoration: none; transition: transform 0.2s, border-color 0.2s;" onmouseover="this.style.borderColor='rgb(60, 65, 75)'" onmouseout="this.style.borderColor='rgb(35, 37, 42)'">
+            <span style="display: inline-flex; align-items: center; gap: 0.75rem; font-size: 1.15rem; font-weight: 700; color: rgb(255, 255, 255); margin-bottom: 0.85rem;">
+              <span style="font-size: 1.35rem; line-height: 1;" role="img" aria-hidden="true">🐾</span>
+              Veterinaria
+            </span>
+            <p style="font-size: 0.9rem; color: rgb(156, 163, 175); line-height: 1.6; margin: 0 0 1.5rem 0;">
+              Citas y recordatorios de vacunas sin que el teléfono decida tu día.
+            </p>
+            <span style="margin-top: auto; font-size: 0.875rem; font-weight: 700; color: rgb(232, 163, 61);">
+              Visitar página
+              <span aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <!-- Tarjeta Peluquerías -->
+          <a href="https://peluquerias.botqueron.com/" target="_blank" rel="noopener noreferrer" style="display: flex; flex-direction: column; width: 100%; max-width: 340px; padding: 1.75rem; border-radius: 12px; border: 1px solid rgb(35, 37, 42); background: rgb(22, 23, 24); text-decoration: none; transition: transform 0.2s, border-color 0.2s;" onmouseover="this.style.borderColor='rgb(60, 65, 75)'" onmouseout="this.style.borderColor='rgb(35, 37, 42)'">
+            <span style="display: inline-flex; align-items: center; gap: 0.75rem; font-size: 1.15rem; font-weight: 700; color: rgb(255, 255, 255); margin-bottom: 0.85rem;">
+              <span style="font-size: 1.35rem; line-height: 1;" role="img" aria-hidden="true">💈</span>Peluquerías
+            </span>
+            <p style="font-size: 0.9rem; color: rgb(156, 163, 175); line-height: 1.6; margin: 0 0 1.5rem 0;">
+              La silla nunca para: la agenda se llena sola mientras tú cortas.
+            </p>
+            <span style="margin-top: auto; font-size: 0.875rem; font-weight: 700; color: rgb(110, 139, 245);">
+              Visitar página <span aria-hidden="true">→</span>
+            </span>
+          </a>
+       </div>
+
+        <!-- Pie de página -->
+        <p style="text-align: center; margin-top: 2.5rem; font-size: 0.875rem; color: rgb(0, 255, 212);">
+          ¿No es el tuyo? Da igual: si tu negocio gestiona citas, MicroAgenda es para ti.
+        </p>
+
+      </div>
+    </section>
+
+
+
+
+
+    <!-- PLANES SECTION -->
+    <section id="planes" class="py-24 bg-[#F8FAFC]">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16 slide-up">
+          <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight mb-4 text-ink">Planes Transparentes</h2>
+          <p class="text-lg text-ink-light">Precios claros, sin comisiones ocultas ni sorpresas a fin de mes.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 items-center max-w-5xl mx-auto">
+          
+          <!-- Pack Hostelería -->
+          <div class="bg-white rounded-3xl border border-slate-200 soft-shadow slide-up overflow-hidden flex flex-col hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
+            <img src="/camarero.jpg" alt="Hostelería" width="800" height="480" loading="lazy" decoding="async" class="w-full h-48 object-cover">
+            <div class="p-8 flex-1 flex flex-col">
+              <h3 class="font-display font-bold text-2xl mb-6 mt-2">Pack Hostelería</h3>
+              <div class="flex items-baseline gap-1 mb-1">
+                <span class="font-display font-bold text-5xl">69€*</span>
+                <span class="text-ink-light font-medium">/mes</span>
+              </div>
+              <p class="text-xs font-bold text-ink-light/70 mb-7">Sin permanencia · Cancela cuando quieras</p>
+              <ul class="space-y-4 mb-8 text-sm font-medium text-ink-light flex-1">
+                <li class="flex items-start gap-3"><svg class="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Panel de administración propio</li>
+                <li class="flex items-start gap-3"><svg class="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Creación de carta asistida por IA</li>
+                <li class="flex items-start gap-3"><svg class="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> QR personalizado para tus clientes</li>
+                <li class="flex items-start gap-3"><svg class="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Chatbot que recomienda platos a tus clientes</li>
+              </ul>
+              <div class="flex flex-col gap-3 mt-auto">
+                <a href="#contacto" class="block w-full text-center py-3.5 rounded-xl border border-slate-200 font-bold hover:bg-slate-50 transition-colors">Seleccionar</a>
+                <button type="button" data-demo-video="/menuai-demo.mp4" data-demo-title="Pack Hostelería · Demo" class="demo-trigger w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-slate-100 text-ink font-bold hover:bg-slate-200 transition-colors">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Ver demo
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pack Agenda -->
+          <div class="bg-white rounded-3xl border-2 border-primary soft-shadow slide-up relative overflow-hidden flex flex-col hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
+            <div class="absolute top-4 right-4 bg-primary text-white px-4 py-1.5 rounded-full font-bold text-xs tracking-wide shadow-md z-10">
+              Más elegido
+            </div>
+            <img src="/peluquero.jpg" alt="Agenda y Citas" width="800" height="480" loading="lazy" decoding="async" class="w-full h-48 object-cover">
+            <div class="p-8 flex-1 flex flex-col">
+              <h3 class="font-display font-bold text-2xl mb-6 mt-2 text-ink">Pack Agenda</h3>
+              <div class="flex items-baseline gap-1 mb-1">
+                <span class="font-display font-bold text-5xl">49€*</span>
+                <span class="text-ink-light font-medium">/mes</span>
+              </div>
+              <p class="text-xs font-bold text-ink-light/70 mb-7">Sin permanencia · Cancela cuando quieras</p>
+              <ul class="space-y-4 mb-8 text-sm font-medium text-ink-light flex-1">
+                <li class="flex items-start gap-3"><svg class="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Reservas por WhatsApp con IA conversacional</li>
+                <li class="flex items-start gap-3"><svg class="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Agenda compartida con todo tu equipo</li>
+                <li class="flex items-start gap-3"><svg class="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Configura servicios, trabajadores y horarios</li>
+                <li class="flex items-start gap-3"><svg class="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Panel de administración propio</li>
+              </ul>
+              <div class="flex flex-col gap-3 mt-auto">
+                <a href="#contacto" class="block w-full text-center py-3.5 rounded-full border border-slate-200 font-bold hover:bg-slate-50 transition-colors">Seleccionar</a>
+                <button type="button" data-demo-video="/demo-microbarber.mp4" data-demo-title="Pack Agenda · Demo" class="demo-trigger w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-slate-100 text-ink font-bold hover:bg-slate-200 transition-colors">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Ver demo
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pack Despachos -->
+          <div class="bg-white rounded-3xl border border-slate-200 soft-shadow slide-up relative overflow-hidden flex flex-col hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
+            <div class="relative w-full h-48 overflow-hidden border-b border-slate-200">
+              <img src="/elegante.jpg" alt="Pack Despachos" width="800" height="480" loading="lazy" decoding="async" class="w-full h-full object-cover">
+              <!-- Próximamente Badge nítido -->
+              <div class="absolute top-4 right-4 bg-slate-800 text-white px-4 py-1.5 rounded-full font-bold text-xs tracking-wide shadow-md z-10">
+                Próximamente
+              </div>
+            </div>
+            
+            <div class="p-8 flex-1 flex flex-col">
+              <!-- Información nítida y visible -->
+              <h3 class="font-display font-bold text-2xl mb-4 mt-2 text-ink">Pack Despachos</h3>
+              <p class="font-medium text-sm text-slate-600 leading-relaxed mb-6">
+                Un asistente experto entrenado con las normativas, leyes y documentos de tu asesoría o despacho para filtrar y cualificar a tus clientes de alto valor automáticamente.
+              </p>
+
+              <!-- Detalles borrosos -->
+              <div class="blur-[5px] opacity-40 select-none flex-1 flex flex-col">
+                <div class="flex items-baseline gap-1 mb-8">
+                  <span class="font-display font-bold text-5xl text-slate-400">99€*</span>
+                  <span class="text-slate-400 font-medium">/mes</span>
+                </div>
+                <ul class="space-y-4 mb-8 text-sm font-medium text-slate-400 flex-1">
+                  <li class="flex items-start gap-3"><svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> IA Asistente Jurídico experto</li>
+                  <li class="flex items-start gap-3"><svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Procesamiento de documentos</li>
+                  <li class="flex items-start gap-3"><svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Cualificación de leads (filtros)</li>
+                </ul>
+              </div>
+              
+              <!-- Botón nítido -->
+              <div class="flex flex-col gap-3 mt-auto pt-6">
+                <button disabled class="block w-full text-center py-3.5 rounded-full border-2 border-slate-200 font-bold text-slate-400 cursor-not-allowed bg-slate-50 relative z-10">Próximamente</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="text-center text-sm text-ink-light mt-12 max-w-2xl mx-auto">
+          * Precio mostrado en facturación anual. Las modalidades mensual y semestral tienen tarifa distinta.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- BANNER PORTFOLIO -->
+    <section class="relative py-16 overflow-hidden bg-primary">
+      <div class="absolute inset-0 opacity-80 bg-gradient-to-br from-blue-700 to-primary"></div>
+      <div class="absolute inset-0 opacity-10 bg-[url(https://www.transparenttextures.com/patterns/cubes.png)]"></div>
+      <div class="relative z-10 flex flex-col items-center justify-between gap-8 px-6 mx-auto max-w-7xl md:flex-row">
+        <div>
+          <h2 class="mb-3 text-3xl font-bold text-white font-display md:text-4xl">¿Aún tienes dudas?</h2>
+          <p class="max-w-xl text-lg text-white/90">Descubre cómo nuestros asistentes multiplicaron las reservas de negocios reales en Málaga.</p>
+        </div>
+        <a href="/portfolio/" class="whitespace-nowrap rounded-full bg-white px-10 py-5 text-lg font-black text-primary border-4 border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all duration-300 text-center hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(255,255,255,0.6)] md:text-xl">
+          Conoce nuestro trabajo
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-24 bg-white border-t border-slate-100 [content-visibility:auto] [contain-intrinsic-size:1px_1400px]">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16 slide-up">
+          <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight mb-4 text-ink">Dudas Frecuentes</h2>
+          <p class="text-lg text-ink-light">Todo lo que necesitas saber antes de contratar a tu nuevo empleado digital.</p>
+        </div>
+
+        <div class="space-y-4 slide-up" style="transition-delay: 100ms;">
+          <!-- FAQ 1 -->
+          <details class="group bg-slate-50 rounded-2xl border border-slate-200 soft-shadow overflow-hidden open:ring-2 open:ring-primary/20 transition-all" open>
+            <summary class="flex justify-between items-center font-display font-bold text-lg cursor-pointer p-6 text-ink select-none list-none [&::-webkit-details-marker]:hidden">
+              ¿Tengo que saber de tecnología para usarlo?
+              <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></path></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-ink-light leading-relaxed">
+              Cero. Nosotros nos encargamos de toda la configuración, de entrenar a la IA con los datos de tu negocio y de conectarlo a tu WhatsApp. Tú solo te dedicas a recibir clientes y revisar la agenda.
+            </div>
+          </details>
+
+          <!-- FAQ 2 -->
+          <details class="group bg-slate-50 rounded-2xl border border-slate-200 soft-shadow overflow-hidden open:ring-2 open:ring-primary/20 transition-all">
+            <summary class="flex justify-between items-center font-display font-bold text-lg cursor-pointer p-6 text-ink select-none list-none [&::-webkit-details-marker]:hidden">
+              ¿Cuánto tardáis en ponerlo en marcha?
+              <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></path></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-ink-light leading-relaxed">
+              Depende del tamaño de tu negocio, pero por lo general en <strong>48-72 horas</strong> tu Botquerón estará listo y entrenado para empezar a trabajar por ti 24/7.
+            </div>
+          </details>
+
+          <!-- FAQ 3 -->
+          <details class="group bg-slate-50 rounded-2xl border border-slate-200 soft-shadow overflow-hidden open:ring-2 open:ring-primary/20 transition-all">
+            <summary class="flex justify-between items-center font-display font-bold text-lg cursor-pointer p-6 text-ink select-none list-none [&::-webkit-details-marker]:hidden">
+              ¿Sabe responder preguntas sobre mis precios o servicios?
+              <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></path></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-ink-light leading-relaxed">
+              ¡Claro! Le damos de comer todos los datos de tu local: carta, precios, servicios, horarios y políticas. La IA los memoriza y responde con exactitud como si fueses tú mismo.
+            </div>
+          </details>
+
+          <!-- FAQ 4 -->
+          <details class="group bg-slate-50 rounded-2xl border border-slate-200 soft-shadow overflow-hidden open:ring-2 open:ring-primary/20 transition-all">
+            <summary class="flex justify-between items-center font-display font-bold text-lg cursor-pointer p-6 text-ink select-none list-none [&::-webkit-details-marker]:hidden">
+              ¿Qué pasa si la IA no sabe qué responder?
+              <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></path></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-ink-light leading-relaxed">
+              Está programado para ser honesto. Si alguien hace una pregunta muy específica o rara que no está en su conocimiento, te avisa para que un humano tome el control de la conversación. Nunca dejamos al cliente tirado.
+            </div>
+          </details>
+
+          <!-- FAQ 5 -->
+          <details class="group bg-slate-50 rounded-2xl border border-slate-200 soft-shadow overflow-hidden open:ring-2 open:ring-primary/20 transition-all">
+            <summary class="flex justify-between items-center font-display font-bold text-lg cursor-pointer p-6 text-ink select-none list-none [&::-webkit-details-marker]:hidden">
+              ¿Puedo deducirlo como gasto de mi actividad?
+              <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></path></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-ink-light leading-relaxed">
+              Sí. Emitimos factura con IVA a nombre de tu negocio, así que es un gasto deducible de tu actividad como autónomo o pyme, igual que cualquier otra herramienta de software.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO SECTION -->
+    <section id="contacto" class="py-24 bg-white relative">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 md:p-12 soft-shadow slide-up">
+          <div class="mb-10 text-center">
+            <h2 class="font-display font-bold text-3xl md:text-4xl mb-3 text-ink">Hablemos cara a cara</h2>
+            <p class="text-ink-light">Déjanos tus datos. Cero bots en este paso.</p>
+          </div>
+          
+          <form id="contact-form" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="block text-sm font-bold text-ink">Nombre</label>
+                <input type="text" name="nombre" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Tu nombre" required>
+              </div>
+              <div class="space-y-2">
+                <label class="block text-sm font-bold text-ink">Correo Electrónico</label>
+                <input type="email" name="email" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="hola@ejemplo.com" required>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-bold text-ink">Teléfono</label>
+              <input type="tel" name="telefono" id="telefono" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="+34 600 000 000" pattern="[+0-9\s\-]{7,20}" title="Introduce solo números, espacios, guiones o el prefijo +" required>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-bold text-ink">¿Qué buscas automatizar?</label>
+              <textarea name="mensaje" rows="4" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Cuéntanos un poco sobre tu negocio..."></textarea>
+            </div>
+            <button type="submit" id="submit-btn" class="w-full btn-primary py-4 text-center font-bold text-lg mt-4">
+              Enviar Petición
+            </button>
+            <div id="form-message" class="hidden p-4 rounded-xl text-center font-bold mt-4 text-sm"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-ink text-slate-400 py-12 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col items-center">
+      <div class="font-display font-bold text-3xl text-white mb-2">
+        Botquerón<span class="text-primary">.</span>
+      </div>
+      <p class="text-sm text-slate-500 mb-6 text-center max-w-md">Nacidos en Málaga. Trabajamos con autónomos y pymes de toda España.</p>
+      <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-sm font-medium">
+        <a href="mailto:hola@botqueron.com" class="hover:text-white transition-colors">hola@botqueron.com</a>
+        <span class="hidden md:block w-1 h-1 rounded-full bg-slate-700"></span>
+        <a href="tel:+34651857079" class="hover:text-white transition-colors">+34 651 857 079</a>
+        <span class="hidden md:block w-1 h-1 rounded-full bg-slate-700"></span>
+        <a href={`https://wa.me/${whatsappNumber}`} class="hover:text-white transition-colors">WhatsApp Directo</a>
+        <span class="hidden md:block w-1 h-1 rounded-full bg-slate-700"></span>
+        <span>Málaga, España © 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating Widget -->
+  <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-xl hover:scale-110 hover:shadow-2xl transition-all duration-300 flex items-center justify-center group" aria-label="Contactar por WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    </svg>
+    <!-- Tooltip -->
+    <div class="absolute right-full mr-4 bg-white text-ink text-sm font-bold py-2 px-4 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-slate-100">
+      ¡Hablemos por WhatsApp!
+    </div>
+  </a>
+
+  <!-- Demo Video Modal -->
+  <div id="demo-modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 bg-ink/80 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+    <div class="relative w-full max-w-4xl bg-ink rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+      <div class="flex items-center justify-between px-5 py-4 border-b border-white/10">
+        <h3 id="demo-modal-title" class="font-display font-bold text-white text-lg">Demo</h3>
+        <button id="demo-close" type="button" aria-label="Cerrar" class="w-9 h-9 inline-flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+      </div>
+      <div class="aspect-video bg-black flex items-center justify-center">
+        <video id="demo-video" class="w-full h-full" controls playsinline preload="metadata"></video>
+        <div id="demo-fallback" class="hidden text-center text-slate-300 px-6">
+          <p class="font-display font-bold text-xl text-white mb-2">Vídeo en preparación</p>
+          <p class="text-sm">Estamos grabando la demo de este pack. ¡Vuelve pronto!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Text Rotation Animation
+    const rotatingText = document.getElementById('rotating-text');
+    if (rotatingText) {
+      const words = ['Negocio.', 'Barbería.', 'Agenda.', 'Peluquería.', 'Veterinaria.', 'Salón de belleza.'];
+      let wordIndex = 0;
+      
+      setInterval(() => {
+        rotatingText.classList.add('opacity-0');
+        setTimeout(() => {
+          wordIndex = (wordIndex + 1) % words.length;
+          rotatingText.textContent = words[wordIndex];
+          rotatingText.classList.remove('opacity-0');
+        }, 500);
+      }, 3000);
+    }
+
+    // Slide-up animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+    document.querySelectorAll('.slide-up, .slide-left, .slide-right').forEach((el) => {
+      observer.observe(el);
+    });
+
+    // Form Submission
+    const contactForm = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formMessage = document.getElementById('form-message');
+
+    if (contactForm && submitBtn && formMessage) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+       
+        const N8N_WEBHOOK_URL = import.meta.env.PUBLIC_N8N_WEBHOOK_URL;
+
+        const telefonoInput = document.getElementById('telefono') as HTMLInputElement | null;
+        if (!telefonoInput) return;
+        const telefonoVal = telefonoInput.value.trim(); // Ya sabemos que no es null
+
+        if (!/^(\+34|0)[0-9\s\-]{7,13}$/.test(telefonoVal)) {
+          formMessage.textContent = '⚠️ Introduce un número de teléfono válido.';
+          formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-red-50 text-red-600 border border-red-100';
+          return;
+        }
+
+        if (!N8N_WEBHOOK_URL || N8N_WEBHOOK_URL === 'TU_URL_DE_WEBHOOK_N8N_AQUI') {
+          console.warn('Falta configurar la URL de n8n.');
+          formMessage.textContent = '⚠️ Error: Falta configurar el destino del formulario.';
+          formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-red-50 text-red-600 border border-red-100';
+          return;
+        }
+
+        const formData = new FormData(contactForm as HTMLFormElement);
+        const data = Object.fromEntries(formData.entries());
+
+        (submitBtn as HTMLButtonElement).disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        try {
+          const response = await fetch(N8N_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+
+          if (response.ok) {
+            formMessage.textContent = '✅ ¡Recibido! Te contactaremos pronto.';
+            formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-emerald-50 text-emerald-600 border border-emerald-100';
+            (contactForm as HTMLFormElement).reset();
+          } else {
+            throw new Error('Error en el servidor');
+          }
+        } catch (error) {
+          formMessage.textContent = '❌ Algo ha fallado. Inténtalo de nuevo.';
+          formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-red-50 text-red-600 border border-red-100';
+        } finally {
+          (submitBtn as HTMLButtonElement).disabled = false;
+          submitBtn.textContent = 'Enviar Petición';
+        }
+      });
+    }
+    // Demo Video Modal
+    const demoModal = document.getElementById('demo-modal');
+    const demoVideo = document.getElementById('demo-video') as HTMLVideoElement | null;
+    const demoFallback = document.getElementById('demo-fallback');
+    const demoTitle = document.getElementById('demo-modal-title');
+    const demoClose = document.getElementById('demo-close');
+
+    const openDemo = (src: string, title: string) => {
+      if (!demoModal || !demoVideo || !demoFallback || !demoTitle) return;
+      demoTitle.textContent = title || 'Demo';
+      if (src) {
+        demoVideo.src = src;
+        demoVideo.classList.remove('hidden');
+        demoFallback.classList.add('hidden');
+        demoVideo.play().catch((err) => {demoFallback.classList.remove('hidden');console.error('Video play error:', err);});        
+      } else {
+        demoVideo.removeAttribute('src');
+        demoVideo.load();
+        demoVideo.classList.add('hidden');
+        demoFallback.classList.remove('hidden');
+      }
+      demoModal.classList.remove('hidden');
+      demoModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeDemo = () => {
+      if (!demoModal || !demoVideo) return;
+      demoVideo.pause();
+      demoVideo.removeAttribute('src');
+      demoVideo.load();
+      demoModal.classList.add('hidden');
+      demoModal.classList.remove('flex');
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll<HTMLButtonElement>('.demo-trigger').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const src = btn.getAttribute('data-demo-video') ?? '';
+        const title = btn.getAttribute('data-demo-title') ?? 'Demo';
+        openDemo(src, title);
+      });
+    });
+
+    if (demoClose) demoClose.addEventListener('click', closeDemo);
+    if (demoModal) {
+      demoModal.addEventListener('click', (e) => {
+        if (e.target === demoModal) closeDemo();
+      });
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && demoModal && !demoModal.classList.contains('hidden')) closeDemo();
+    });
+
+    // Scroll handling unificado: espetos flotantes + header inteligente
+    // Un único listener passive + rAF en vez de dos listeners independientes,
+    // para reducir el trabajo en el hilo principal durante el scroll.
+    const espetoLeft = document.getElementById('espeto-left');
+    const espetoRight = document.getElementById('espeto-right');
+    const header = document.querySelector('header');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const onScroll = () => {
+      const scrollY = window.scrollY;
+
+      if (espetoLeft && espetoRight && !prefersReducedMotion) {
+        // Aparecen después del hero (aprox 400px) y desaparecen al bajar mucho (aprox 1800px)
+        if (scrollY > 400 && scrollY < 1800) {
+          espetoLeft.classList.remove('-translate-x-full');
+          espetoRight.classList.remove('translate-x-full');
+        } else {
+          espetoLeft.classList.add('-translate-x-full');
+          espetoRight.classList.add('translate-x-full');
+        }
+      }
+
+      if (header) {
+        if (scrollY > lastScrollY && scrollY > 100) {
+          header.classList.add('-translate-y-full', 'opacity-0');
+        } else {
+          header.classList.remove('-translate-y-full', 'opacity-0');
+        }
+      }
+
+      lastScrollY = scrollY;
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
