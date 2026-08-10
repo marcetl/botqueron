@@ -1,9 +1,6 @@
-export const prerender = false;
+export const prerender = false; // Para que se ejecute en el servidor bajo demanda
 
 import type { APIRoute } from 'astro';
-
-
-export const prerender = false; // Para que se ejecute en el servidor bajo demanda
 
 export const POST: APIRoute = async ({ request }) => {
   try {
