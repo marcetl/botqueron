@@ -139,7 +139,7 @@ export const POST: APIRoute = async ({ request }) => {
     const hasTools = Array.isArray(activeTools) && activeTools.length > 0;
 
     const payload: Record<string, any> = {
-      model: "google/gemini-2.5-flash:free",
+      model: "meta-llama/llama-3.3-70b-instruct:free",
       messages: finalMessages,
     };
 
