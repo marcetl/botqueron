@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+const baseUrl = import.meta.env.BASE_URL;
 const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
 
 // === CONFIGURACIÓN DE PORTFOLIOS ===
@@ -13,13 +14,13 @@ const proyectos = [
       {
         title: "Control Total",
         description: "Mira todas tus citas unificadas en un tablero limpio y rápido. Podrás mover, cancelar o gestionar tiempos de servicio con un solo clic.",
-        image: "foto_dashboard_jcbarber.png",
+        image: "/foto_dashboard_jcbarber.png",
         alt: "Demo de interfaz y calendario de MicroBarber"
       },
       {
         title: "La IA en WhatsApp",
         description: "Tus clientes piden cita enviando un simple mensaje. Nuestro bot ve la disponibilidad en tiempo real gracias al calendario inteligente.",
-        image: "calendario_jcbarber.png",
+        image: "/calendario_jcbarber.png",
         alt: "Demo de bot de WhatsApp MicroBarber y conexión de calendario"
       }
     ]
@@ -43,17 +44,14 @@ const proyectos = [
       <a href="/" class="font-display font-bold text-3xl md:text-4xl tracking-tight text-primary flex items-center">
         Botquerón
       </a>
-      
+
       <nav class="hidden md:flex items-center gap-8 font-semibold text-sm">
-        <a href="#" onclick="window.location.href = window.location.pathname.includes('/portfolio') ? window.location.pathname.replace(/\/portfolio\/?$/, '/') : '/';return false;" class="text-ink-light hover:text-primary transition-colors">
-          Inicio
-        </a>
-        <a href="./" class="text-primary transition-colors font-bold">Conoce nuestro trabajo</a>
-        <a href="../#planes" class="text-ink-light hover:text-primary transition-colors">Planes</a>
-        <a href="../#contacto" class="btn-primary px-6 py-2.5 text-sm font-bold tracking-wide">Empezar ahora</a>
-      </nav>
-           
-      <a href="/#contacto" class="md:hidden btn-primary px-5 py-2 text-xs font-bold tracking-wide">Contactar</a>
+        <a href={baseUrl} class="text-ink-light hover:text-primary transition-colors">Inicio</a>
+        <a href={`${baseUrl}portfolio/`} class="text-primary transition-colors font-bold">Conoce nuestro trabajo</a>
+        <a href={`${baseUrl}#planes`} class="text-ink-light hover:text-primary transition-colors">Planes</a>
+        <a href={`${baseUrl}#contacto`} class="btn-primary px-6 py-2.5 text-sm font-bold tracking-wide">Empezar ahora</a>
+      </nav>      
+            
     </div>
   </header>
 
