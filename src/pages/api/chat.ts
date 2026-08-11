@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false; // Para que se ejecute en el servidor bajo demanda
 
-const OPENROUTER_API_KEY = import.meta.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 
 const SYSTEM_PROMPTS = {
   agenda: `Eres un asistente virtual de IA para una barbería/peluquería llamada "MicroBarber".
@@ -99,8 +99,8 @@ const TOOLS = {
 };
 
 export const POST: APIRoute = async ({ request }) => {
-  // 1. Obtener la clave de entorno de Astro
-  const apiKey = import.meta.env.OPENROUTER_API_KEY;
+  // 1. Obtener la clave de entorno (se lee en tiempo de ejecución, nunca queda grabada en el bundle)
+  const apiKey = OPENROUTER_API_KEY;
 
   if (!apiKey) {
     return new Response(
