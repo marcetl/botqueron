@@ -33,7 +33,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Preload del poster del hero para mejorar el LCP mientras carga el vídeo -->
-  <link rel="preload" as="image" href="/video-poster.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="/video-poster.png" fetchpriority="high">
 
   <!-- Datos estructurados para SEO -->
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -119,7 +119,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
           muted
           playsinline
           preload="metadata"
-          poster="/video-poster.jpg"
+          poster="/video-poster.png"
           class="w-full h-full object-cover"
         >
           <source src="/video_botqueron.mp4" type="video/mp4" />
