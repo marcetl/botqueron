@@ -71,6 +71,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
       <nav class="hidden md:flex items-center gap-8 font-semibold text-sm">
         <a href={`${baseUrl}#soluciones`} class="text-ink-light hover:text-primary transition-colors">Soluciones</a>
         <a href={`${baseUrl}#como-funciona`} class="text-ink-light hover:text-primary transition-colors">Cómo funciona</a>
+        <a href={`${baseUrl}#enlaces`} class="text-ink-light hover:text-primary transition-colors">Versiones</a>
         <a href={`${baseUrl}#planes`} class="text-ink-light hover:text-primary transition-colors">Planes</a>
         <a href={`${baseUrl}portfolio/`} class="text-ink-light hover:text-primary transition-colors">Conoce nuestro trabajo</a>
         <a href={`${baseUrl}#contacto`} class="btn-primary px-6 py-2.5 text-sm font-bold tracking-wide">Empezar ahora</a>
@@ -111,7 +112,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
 
   <main>
     <!-- HERO SECTION -->
-    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center justify-center min-h-[85vh]">
+    <section id="video" class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center justify-center min-h-[85vh]">
       <!-- Background Video -->
       <div class="absolute inset-0 w-full h-full z-0">
         <video
@@ -231,8 +232,10 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
       </div>
     </section>
 
+
+
     <!-- ENLACES SECTION -->
-    <section class="relative py-16 overflow-hidden bg-primary">
+    <section id="enlaces" "class="relative py-16 overflow-hidden bg-primary">
       <div style="max-width: 1280px; margin: 0px auto; padding: 0 1.5rem;">
         <!-- Encabezado -->
         <div style="text-align: center; margin-bottom: 2.5rem; opacity: 1; transform: none;">
@@ -285,7 +288,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
         <!-- Subtítulo -->
         <h3 style="font-family: &quot;Cormorant Garamond&quot;, serif; font-size: clamp(1.35rem, 2.2vw, 1.75rem); font-weight: 600; color: rgb(247, 248, 248); text-align: center; margin-top: 3.5rem; margin-bottom: 1.5rem; line-height: 1.25;">
           Tres sectores tienen ya 
-          <span style="color: rgb(0, 255, 212); font-style: italic;">su página a medida</span>
+          <span style="color: rgb(0, 255, 212); font-style: italic;"> su página a medida</span>
         </h3>
 
         <!-- Tarjetas inferiores -->
@@ -458,8 +461,10 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
     </section>
 
 
+
+
     <!-- BANNER PORTFOLIO -->
-    <section class="relative py-16 overflow-hidden bg-primary">
+    <section id="banner" class="relative py-16 overflow-hidden bg-primary">
       <div class="absolute inset-0 opacity-80 bg-gradient-to-br from-blue-700 to-primary"></div>
       <div class="absolute inset-0 opacity-10 bg-[url(https://www.transparenttextures.com/patterns/cubes.png)]"></div>
       <div class="relative z-10 flex flex-col items-center justify-between gap-8 px-6 mx-auto max-w-7xl md:flex-row">
@@ -472,6 +477,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
         </a>
       </div>
     </section>
+
 
     <!-- FAQ SECTION -->
     <section id="faq" class="py-24 bg-white border-t border-slate-100 [content-visibility:auto] [contain-intrinsic-size:1px_1400px]">
@@ -560,6 +566,8 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
       </div>
     </section>
 
+
+
     <!-- CONTACTO SECTION -->
     <section id="contacto" class="py-24 bg-white relative">
       <div class="max-w-3xl mx-auto px-6">
@@ -598,6 +606,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
     </section>
   </main>
 
+
   <footer class="bg-ink text-slate-400 py-12 px-6">
     <div class="max-w-7xl mx-auto flex flex-col items-center">
       <div class="font-display font-bold text-3xl text-white mb-2">
@@ -615,6 +624,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
       </div>
     </div>
   </footer>
+
 
   <!-- WhatsApp Floating Widget -->
   <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-xl hover:scale-110 hover:shadow-2xl transition-all duration-300 flex items-center justify-center group" aria-label="Contactar por WhatsApp">
@@ -834,3 +844,4 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
   </script>
 </body>
 </html>
+
