@@ -1,0 +1,80 @@
+---
+export interface Props {
+  baseUrl?: string;
+}
+
+const { baseUrl = "" } = Astro.props;
+---
+
+<div class="floating-cta" id="floating-cta">
+  <a href={`${baseUrl}#contacto`} class="floating-cta__link">
+    Pídelo ahora
+  </a>
+  <button class="floating-cta__close" id="floating-cta-close" aria-label="Cerrar">
+    &times;
+  </button>
+</div>
+
+<style>
+  .floating-cta {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+  }
+
+  .floating-cta__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #ffc93c, #ff8a00);
+    color: #1a1a1a;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 6px 16px rgba(255, 138, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .floating-cta__link:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 20px rgba(255, 138, 0, 0.5);
+  }
+
+  .floating-cta__close {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    background: #1a1a1a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    padding: 0;
+  }
+
+  .floating-cta.is-hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  const widget = document.getElementById("floating-cta");
+  const closeBtn = document.getElementById("floating-cta-close");
+
+  closeBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    widget?.classList.add("is-hidden");
+  });
+</script>

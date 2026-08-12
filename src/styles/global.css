@@ -133,3 +133,19 @@ body {
   background-color: var(--color-secondary);
   color: var(--color-ink);
 }
+
+/* Pidelo ahora */
+.widget-flotante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #4A90E2;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 1000;
+}
+
+
