@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import FloatingWidget from './FloatingWidget.astro';
 const baseUrl = import.meta.env.BASE_URL;
 const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
 
@@ -54,6 +55,8 @@ const proyectos = [
             
     </div>
   </header>
+
+  <FloatingWidget baseUrl={baseUrl} />
 
   <!-- Portfolio Content Iteration -->
   <main class="flex-1 flex flex-col pt-20">
