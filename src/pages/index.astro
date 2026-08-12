@@ -92,7 +92,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
       </button>
 
       <!-- Menú móvil: oculto por defecto, se despliega debajo del header -->
-      <nav id="mobile-menu" class="hidden md:hidden flex flex-col gap-1 font-semibold text-sm w-64 max-w-[calc(100vw-2rem)] absolute top-full right-4 left-auto bg-white shadow-xl rounded-2xl border border-slate-100/80 px-6 py-4 z-50 h-auto max-h-[80vh] overflow-y-auto">
+      <nav id="mobile-menu" style="width: 240px !important; max-width: 240px !important; right: 16px !important; left: auto !important;" class="hidden md:hidden flex flex-col gap-1 font-semibold text-sm absolute top-full bg-white shadow-xl px-6 py-4 rounded-xl z-50">
         <a href={`${baseUrl}#soluciones`} class="py-3 text-ink-light hover:text-primary transition-colors">Soluciones</a>
         <a href={`${baseUrl}#como-funciona`} class="py-3 text-ink-light hover:text-primary transition-colors">Cómo funciona</a>
         <a href={`${baseUrl}#enlaces`} class="py-3 text-ink-light hover:text-primary transition-colors">Versiones</a>
