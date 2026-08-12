@@ -37,21 +37,70 @@ const proyectos = [
   <title>Portfolio y Demos | Botquerón</title>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col font-body antialiased text-ink">
+
+<body class="selection:bg-primary/20 selection:text-primary font-body antialiased text-ink bg-[#F8FAFC]">
 
   <!-- Navbar -->
   <header class="fixed top-0 w-full z-50 glass-panel border-b border-white/20 transition-all duration-300">
-    <div class="w-full max-w-[90rem] mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-      <a href="/" class="font-display font-bold text-3xl md:text-4xl tracking-tight text-primary flex items-center">
+    <div class="w-full max-w-[90rem] mx-auto px-4 md:px-8 h-20 flex items-center justify-between relative">
+      <a href="#" class="font-display font-bold text-3xl md:text-4xl tracking-tight text-primary flex items-center">
         Botquerón
       </a>
 
-    <nav class="hidden md:flex items-center gap-8 font-semibold text-sm">
-      <a href={baseUrl} class="text-ink-light hover:text-primary transition-colors">Inicio</a>
-      <a href={`${baseUrl}#planes`} class="text-ink-light hover:text-primary transition-colors">Planes</a>
-      <a href={`${baseUrl}portfolio/#demos`} class="text-ink-light hover:text-primary transition-colors border border-orange-500 px-2 py-0.5 rounded">Prueba una demo</a>
-      <a href={`${baseUrl}#contacto`} class="btn-primary px-6 py-2.5 text-sm font-bold tracking-wide">Empezar ahora</a>
-    </nav>
+      <!-- Menú pantalla ordenador -->
+      <nav class="hidden md:flex items-center gap-8 font-semibold text-sm">
+        <a href={baseUrl} class="text-ink-light hover:text-primary transition-colors">Inicio</a>
+        <a href={`${baseUrl}#planes`} class="text-ink-light hover:text-primary transition-colors">Planes</a>
+        <a href={`${baseUrl}portfolio/#demos`} class="text-ink-light hover:text-primary transition-colors border border-orange-500 px-2 py-0.5 rounded">Prueba una demo</a>
+        <a href={`${baseUrl}#contacto`} class="btn-primary px-6 py-2.5 text-sm font-bold tracking-wide">Empezar ahora</a>
+      </nav>
+
+      <!-- Botón hamburguesa: visible solo en móvil -->
+      <button id="menu-toggle" class="md:hidden flex items-center justify-center w-10 h-10" aria-label="Abrir menú" aria-expanded="false">
+        <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Menú móvil: oculto por defecto, se despliega debajo del header -->
+      <nav id="mobile-menu" style="width: 240px !important; max-width: 240px !important; right: 4px !important; left: auto !important;" class="hidden md:hidden flex flex-col gap-1 font-bold text-right text-base absolute top-full bg-white shadow-xl px-4 py-2 rounded-xl z-50">
+        <a href={baseUrl} class="bg-sky-100 py-0.5 text-ink-light hover:text-primary transition-colors">Inicio</a>
+        <a href={`${baseUrl}#planes`} class="bg-sky-100 py-0.5 text-ink-light hover:text-primary transition-colors">Planes</a>
+        <a href={`${baseUrl}portfolio/#demos`} class="bg-sky-100 py-0.5 text-ink-light hover:text-primary transition-colors">Prueba una demo</a>
+        <a href={`${baseUrl}#contacto`} class="btn-primary text-center px-4 py-2 mt-1.5 text-sm font-bold tracking-wide">Empezar ahora</a>
+      </nav>
+
+      <script>
+        const toggleBtn = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const iconOpen = document.getElementById("icon-open");
+        const iconClose = document.getElementById("icon-close");
+
+        toggleBtn?.addEventListener("click", () => {
+          const isOpen = !mobileMenu?.classList.contains("hidden");
+          mobileMenu?.classList.toggle("hidden");
+          iconOpen?.classList.toggle("hidden");
+          iconClose?.classList.toggle("hidden");
+          toggleBtn.setAttribute("aria-expanded", String(!isOpen));
+        });
+
+        // Cierra el menú al tocar un link
+        mobileMenu?.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+            iconOpen?.classList.remove("hidden");
+            iconClose?.classList.add("hidden");
+            toggleBtn?.setAttribute("aria-expanded", "false");
+          });
+        });
+      </script>
+
+
+
+
             
     </div>
   </header>
