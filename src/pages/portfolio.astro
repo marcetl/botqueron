@@ -5,11 +5,11 @@ const baseUrl = import.meta.env.BASE_URL;
 const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '34600000000';
 
 // === CONFIGURACIÓN DE PORTFOLIOS ===
-const proyectos = [
+const proyecto = [
   {
     id: "microbarber",
     badge: "Caso de Éxito",
-    title: "MicroBarber.",
+    title: "MicroBarber",
     description: "Nuestro sistema maestro para revolucionar la gestión de citas e integrarse con WhatsApp. Nació para optimizar agendas complejas como barberías o salones, pero su modularidad al conectarse a nuestro agente de IA se adapta a clínicas, consultorías y reservas de cualquier negocio.",
     features: [
       {
@@ -109,9 +109,32 @@ const proyectos = [
   <main class="flex-1 flex flex-col pt-20">
     
     {proyectos.map((proyecto, pIndex) => (
+
       <div class="flex flex-col" id={proyecto.id}>
-        
-        <!-- Header del proyecto -->
+
+      <!-- Header del proyecto -->
+      <section class="py-12 md:py-32 px-4 sm:px-6 flex flex-col items-center bg-white text-center border-b border-slate-100 relative overflow-hidden w-full max-w-full">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
+          <div class="absolute top-[20%] left-[20%] w-[40%] h-[60%] rounded-full bg-primary/5 blur-[100px]">
+          </div>
+        </div>
+          
+        <div class="relative z-10 max-w-4xl mx-auto w-full px-2">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary font-bold text-xs tracking-wide uppercase mb-6 border border-secondary/20">
+              {proyecto.badge}
+          </div>
+            
+          <h1 class="font-display font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 text-ink tracking-tight break-words">
+            {proyecto.title}
+          </h1>
+            
+          <p class="text-base sm:text-lg md:text-xl text-ink-light max-w-3xl mx-auto leading-relaxed break-words w-full">
+            {proyecto.description}
+          </p>
+        </div>
+      </section>
+
+        <!-- Header del proyecto
         <section class="py-20 md:py-32 px-6 flex flex-col items-center bg-white text-center border-b border-slate-100 relative overflow-hidden">
           <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
             <div class="absolute top-[20%] left-[20%] w-[40%] h-[60%] rounded-full bg-primary/5 blur-[100px]"></div>
@@ -126,7 +149,8 @@ const proyectos = [
               {proyecto.description}
             </p>
           </div>
-        </section>
+        </section>  -->
+
 
         <!-- Gallery / Demo Features -->
         <section class="py-20 md:py-32 px-6 bg-[#F8FAFC]">
