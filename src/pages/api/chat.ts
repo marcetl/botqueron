@@ -2,8 +2,6 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false; // Para que se ejecute en el servidor bajo demanda
 
-const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
-
 const SYSTEM_PROMPTS = {
   agenda: `Eres un asistente virtual de IA para una barbería/peluquería llamada "MicroBarber".
 Tu trabajo es atender al cliente de forma profesional, seria y muy directa.
@@ -100,12 +98,13 @@ const TOOLS = {
 
 export const POST: APIRoute = async ({ request }) => {
   // 1. Obtener la clave de entorno (se lee en tiempo de ejecución, nunca queda grabada en el bundle)
-  const apiKey = OPENROUTER_API_KEY;
+  const apiKey = import.meta.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
 
   if (!apiKey) {
+    console.error("❌ ERROR: La API Key de OpenRouter no está cargada en el servidor.");
     return new Response(
-      JSON.stringify({ error: 'Falta configurar la clave OPENROUTER_API_KEY en el .env.' }), 
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      JSON.stringify({ error: "Falta la API Key en el servidor" }), 
+      { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
 
