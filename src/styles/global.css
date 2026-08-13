@@ -28,6 +28,8 @@ html {
   background-color: var(--color-canvas);
   color: var(--color-ink);
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;       
 }
 
 body {
@@ -35,6 +37,8 @@ body {
   background-color: var(--color-canvas);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; 
+  width: 100%;       
 }
 
 /* Soft shadows for premium feel */
