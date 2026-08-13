@@ -98,14 +98,12 @@ const proyectos = [
         });
       </script>
 
-
-
-
-            
     </div>
   </header>
 
+
   <FloatingWidget baseUrl={baseUrl} />
+
 
   <!-- Portfolio Content Iteration -->
   <main class="flex-1 flex flex-col pt-20">
@@ -124,7 +122,9 @@ const proyectos = [
               {proyecto.badge}
             </div>
             <h1 class="font-display font-bold text-5xl md:text-6xl lg:text-7xl mb-6 text-balance text-ink tracking-tight">{proyecto.title}</h1>
-            <p class="text-lg md:text-xl text-ink-light text-balance max-w-3xl mx-auto leading-relaxed">{proyecto.description}</p>
+            <p class="text-lg md:text-xl text-ink-light text-balance max-w-3xl mx-auto leading-relaxed break-words w-full">
+              {proyecto.description}
+            </p>
           </div>
         </section>
 
