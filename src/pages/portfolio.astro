@@ -216,6 +216,36 @@ const proyectos = [
             </div>
 
             <!-- Panel Calendario UI -->
+            <div class="flex-1 p-6 bg-[#0f0f0f] flex flex-col h-[550px] overflow-hidden">
+              <div class="flex justify-between items-end mb-6 shrink-0">
+                <div>
+                  <h3 class="text-white font-display font-bold text-2xl">Calendario</h3>
+                  <p class="text-white/50 text-sm">Próximas citas de hoy</p>
+                </div>
+                <div class="flex gap-2 text-xs font-medium text-white/70">
+                  <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-white"></div> Álex</span>
+                  <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-slate-500"></div> Laura</span>
+                </div>
+              </div>
+              <!-- Este contenedor es el que absorbe las citas y permite scroll interno -->
+              <div class="flex-1 min-h-0 bg-[#1a1a1a] rounded-2xl border border-white/5 p-4 overflow-y-auto scrollbar-thin relative">
+                <div class="flex flex-col relative" id="agenda-grid">
+                  <!-- Horas del día base -->
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">10:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">11:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">12:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">13:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">16:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">17:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">18:00</span><div class="flex-1 h-px"></div></div>
+                  <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">19:00</span><div class="flex-1 h-px"></div></div>
+                  <!-- Contenedor absoluto para los bloques de citas -->
+                  <div id="agenda-blocks" class="absolute inset-0 pl-16 py-2 pointer-events-none"></div>
+                </div>
+              </div>
+            </div>
+
+            <!--
             <div class="flex-1 p-6 bg-[#0f0f0f] flex flex-col h-[400px] lg:h-[685px] overflow-hidden">
               <div class="flex justify-between items-end mb-6">
                 <div>
@@ -228,8 +258,9 @@ const proyectos = [
                 </div>
               </div>
               <div class="flex-1 bg-[#1a1a1a] rounded-2xl border border-white/5 p-4 overflow-y-auto scrollbar-thin">
-                <div class="flex flex-col relative" id="agenda-grid">
+                <div class="flex flex-col relative" id="agenda-grid">-->
                   <!-- Horas del día base -->
+                  <!--
                   <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">10:00</span><div class="flex-1 h-px"></div></div>
                   <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">11:00</span><div class="flex-1 h-px"></div></div>
                   <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">12:00</span><div class="flex-1 h-px"></div></div>
@@ -238,12 +269,14 @@ const proyectos = [
                   <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">17:00</span><div class="flex-1 h-px"></div></div>
                   <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">18:00</span><div class="flex-1 h-px"></div></div>
                   <div class="flex items-center border-b border-white/5 py-4"><span class="w-16 text-xs text-white/30 font-mono">19:00</span><div class="flex-1 h-px"></div></div>
-                  
+                  -->
                   <!-- Contenedor absoluto para los bloques de citas -->
+                  <!-- 
                   <div id="agenda-blocks" class="absolute inset-0 pl-16 py-2 pointer-events-none"></div>
                 </div>
               </div>
             </div>
+            -->
           </div>
 
           <!-- Demo Menu AI Visual -->
@@ -266,19 +299,28 @@ const proyectos = [
                 <h4 class="text-[#ffd54f] font-bold mb-3 text-sm">Carta de tu negocio</h4>
                 <p class="text-[#ffd54f]/60 text-xs mb-3">Edita el texto abajo para cambiar los productos de la carta. La IA lo leerá al instante.</p>
                 <textarea id="menu-context-input" class="flex-1 bg-black/20 border border-[#ffd54f]/20 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-[#ffd54f]/50 resize-none font-mono">
-Entrantes: Ensaladilla (8€), Porra (7€), Fritura (15€).
-Principales: Espetos (6€/ud), Paella (18€/pax), Chuletón (25€).
-Postres: Tarta de queso (6€), Flan (5€).
-Alérgenos: Fritura lleva gluten. Tarta lleva lácteos.
+                  Entrantes: Ensaladilla (8€), Porra (7€), Fritura (15€).
+                  Principales: Espetos (6€/ud), Paella (18€/pax), Chuletón (25€).
+                  Postres: Tarta de queso (6€), Flan (5€).
+                  Alérgenos: Fritura lleva gluten. Tarta lleva lácteos.
                 </textarea>
                 <button type="button" id="close-menu-btn" class="mt-4 bg-[#ffd54f] text-[#3e2723] py-2.5 rounded-xl font-bold text-sm shadow-md hover:bg-[#ffca28] transition-colors">Guardar y Cerrar</button>
               </div>
 
+              <!-- 
               <div id="chat-menu" class="flex-1 h-[400px] lg:h-[600px] p-4 overflow-y-auto flex flex-col gap-4 bg-[#0c0806] scrollbar-thin relative z-10">
                 <div class="bg-[#170e0a] text-white p-3.5 rounded-2xl rounded-tl-sm self-start max-w-[85%] text-sm leading-relaxed border border-[#ffd54f]/10 shadow-lg">
                   Bienvenido. Pregúntame sobre la carta o dime qué quieres pedir.
                 </div>
               </div>
+              -->
+
+              <div id="chat-menu" class="h-[450px] p-4 overflow-y-auto flex flex-col gap-4 bg-[#0c0806] scrollbar-thin relative z-10">
+                <div class="bg-[#170e0a] text-white p-3.5 rounded-2xl rounded-tl-sm self-start max-w-[85%] text-sm leading-relaxed border border-[#ffd54f]/10 shadow-lg">
+                  Bienvenido. Pregúntame sobre la carta o dime qué quieres pedir.
+                </div>
+              </div>
+
               <div class="p-3 bg-[#170e0a] border-t border-[#ffd54f]/10 relative z-10">
                 <form class="flex gap-2 chat-form" data-demo="menu">
                   <input type="text" placeholder="Ponme dos raciones de espetos..." class="flex-1 bg-black/20 border border-[#ffd54f]/30 rounded-full px-4 py-2.5 text-sm text-white placeholder-[#ffd54f]/50 focus:outline-none focus:border-[#ffd54f]/60 transition-colors disabled:opacity-50" required>
@@ -287,7 +329,24 @@ Alérgenos: Fritura lleva gluten. Tarta lleva lácteos.
               </div>
             </div>
 
+            <div class="flex-1 p-6 bg-[#110a08] flex flex-col h-[550px] overflow-hidden">
+              <div class="flex justify-between items-end mb-6 shrink-0">
+                <div>
+                  <h3 class="text-[#ffd54f] font-display font-bold text-2xl">Mesa 4</h3>
+                  <p class="text-[#ffd54f]/50 text-sm">Comanda en curso</p>
+                </div>
+                <div class="text-[#ffd54f] font-bold text-2xl" id="menu-total">0.00€</div>
+              </div>
+              <div class="flex-1 min-h-0 bg-[#0c0806] rounded-2xl border border-[#ffd54f]/10 p-4 overflow-y-auto scrollbar-thin flex flex-col gap-3 relative" id="menu-grid">
+                <div class="absolute inset-0 flex items-center justify-center text-[#ffd54f]/30 text-sm font-medium transition-opacity pointer-events-none" id="menu-empty">
+                  La comanda está vacía
+                </div>
+                <!-- JS rellenará esto con los platos pedidos -->
+              </div>
+            </div>
+
             <!-- Panel Comanda UI -->
+            <!--
             <div class="flex-1 p-6 bg-[#110a08] flex flex-col h-[400px] lg:h-[685px] overflow-hidden">
               <div class="flex justify-between items-end mb-6">
                 <div>
@@ -300,11 +359,14 @@ Alérgenos: Fritura lleva gluten. Tarta lleva lácteos.
                 <div class="absolute inset-0 flex items-center justify-center text-[#ffd54f]/30 text-sm font-medium transition-opacity" id="menu-empty">
                   La comanda está vacía
                 </div>
+                -->
                 <!-- JS rellenará esto con los platos pedidos -->
+                <!--
               </div>
             </div>
-          </div>
+            -->
 
+          </div>
         </div>
       </div>
     </section>
