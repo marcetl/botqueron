@@ -66,7 +66,8 @@ const proyectos = [
       </button>
 
       <!-- Menú móvil: oculto por defecto, se despliega debajo del header -->
-      <nav id="mobile-menu" style="width: 240px !important; max-width: 240px !important; right: 4px !important; left: auto !important;" class="hidden md:hidden flex flex-col gap-1 font-bold text-right text-base absolute top-full bg-white shadow-xl px-4 py-2 rounded-xl z-50">
+      //<nav id="mobile-menu" style="width: 240px !important; max-width: 240px !important; right: 4px !important; left: auto !important;" class="hidden md:hidden flex flex-col gap-1 font-bold text-right text-base absolute top-full bg-white shadow-xl px-4 py-2 rounded-xl z-50">
+        <nav id="mobile-menu" class="hidden md:hidden flex flex-col gap-1 font-bold text-right text-base absolute top-full right-2 w-60 max-w-[calc(100vw-1rem)] bg-white shadow-xl px-4 py-2 rounded-xl z-50">
         <a href={baseUrl} class="bg-sky-100 py-0.5 text-ink-light hover:text-primary transition-colors">Inicio</a>
         <a href={`${baseUrl}#planes`} class="bg-sky-100 py-0.5 text-ink-light hover:text-primary transition-colors">Planes</a>
         <a href={`${baseUrl}portfolio/#demos`} class="bg-sky-100 py-0.5 text-ink-light hover:text-primary transition-colors">Prueba una demo</a>
