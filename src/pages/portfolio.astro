@@ -112,55 +112,32 @@ const proyectos = [
 
       <div class="flex flex-col" id={proyecto.id}>
 
-      <!-- Header del proyecto -->
-      <section class="py-12 md:py-32 px-4 sm:px-6 flex flex-col items-center bg-white text-center border-b border-slate-100 relative overflow-hidden w-full max-w-full">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
-          <div class="absolute top-[20%] left-[20%] w-[40%] h-[60%] rounded-full bg-primary/5 blur-[100px]">
-          </div>
-        </div>
-          
-        <div class="relative z-10 max-w-4xl mx-auto w-full px-2">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary font-bold text-xs tracking-wide uppercase mb-6 border border-secondary/20">
-              {proyecto.badge}
-          </div>
-            
-          <h1 class="font-display font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 text-ink tracking-tight break-words">
-            {proyecto.title}
-          </h1>
-            
-          <p class="text-base sm:text-lg md:text-xl text-ink-light max-w-3xl mx-auto leading-relaxed break-words w-full">
-            {proyecto.description}
-          </p>
-        </div>
-      </section>
-
-        <!-- Header del proyecto
-        <section class="py-20 md:py-32 px-6 flex flex-col items-center bg-white text-center border-b border-slate-100 relative overflow-hidden">
+        <!-- Header del proyecto -->
+        <section class="py-12 md:py-32 px-4 sm:px-6 flex flex-col items-center bg-white text-center border-b border-slate-100 relative overflow-hidden w-full max-w-full">
           <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
-            <div class="absolute top-[20%] left-[20%] w-[40%] h-[60%] rounded-full bg-primary/5 blur-[100px]"></div>
+            <div class="absolute top-[20%] left-[20%] w-[40%] h-[60%] rounded-full bg-primary/5 blur-[100px]">
+            </div>
           </div>
-          
-          <div class="relative z-10 max-w-4xl mx-auto">
+          <div class="relative z-10 max-w-4xl mx-auto w-full px-2">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary font-bold text-xs tracking-wide uppercase mb-6 border border-secondary/20">
               {proyecto.badge}
             </div>
-            <h1 class="font-display font-bold text-5xl md:text-6xl lg:text-7xl mb-6 text-balance text-ink tracking-tight">{proyecto.title}</h1>
-            <p class="text-lg md:text-xl text-ink-light text-balance max-w-3xl mx-auto leading-relaxed break-words w-full">
+            <h1 class="font-display font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 text-ink tracking-tight break-words">
+              {proyecto.title}
+            </h1>
+            <p class="text-base sm:text-lg md:text-xl text-ink-light max-w-3xl mx-auto leading-relaxed break-words w-full">
               {proyecto.description}
             </p>
           </div>
-        </section>  -->
-
+        </section>
 
         <!-- Gallery / Demo Features -->
         <section class="py-20 md:py-32 px-6 bg-[#F8FAFC]">
           <div class="max-w-6xl mx-auto flex flex-col gap-24 lg:gap-32">
-            
             {proyecto.features.map((feature, fIndex) => {
               const isEven = fIndex % 2 === 0;
               return (
                 <div class={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-16 items-center`}>
-                  
                   <div class="flex-1 w-full lg:w-1/2">
                     <figure class="relative rounded-3xl overflow-hidden soft-shadow border border-slate-200/60 bg-white group cursor-zoom-in">
                       <div class="absolute top-0 inset-x-0 h-10 bg-slate-50/80 backdrop-blur-md border-b border-slate-200 flex items-center px-4 gap-2 z-10">
@@ -176,7 +153,6 @@ const proyectos = [
                       <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors duration-300 pointer-events-none z-20"></div>
                     </figure>
                   </div>
-
                   <div class="flex-1 w-full lg:w-1/2 flex flex-col justify-center">
                     <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6">
                       <span class="font-display font-bold text-xl">{fIndex + 1}</span>
@@ -184,11 +160,9 @@ const proyectos = [
                     <h3 class="font-display font-bold text-3xl mb-4 text-ink">{feature.title}</h3>
                     <p class="text-lg text-ink-light leading-relaxed">{feature.description}</p>
                   </div>
-
                 </div>
               );
             })}
-
           </div>
         </section>
 
@@ -219,11 +193,20 @@ const proyectos = [
                   <p class="text-xs text-white/50">Online • Pack Agenda</p>
                 </div>
               </div>
+              <div id="chat-agenda" class="h-[450px] p-4 overflow-y-auto flex flex-col gap-4 bg-[#0a0a0a] scrollbar-thin">
+                <div class="bg-[#222] text-white p-3.5 rounded-2xl rounded-tl-sm self-start max-w-[85%] text-sm leading-relaxed border border-white/5 shadow-lg">
+                  ¡Hola! Soy el asistente de MicroBarber. ¿Quieres agendar una cita?
+                </div>
+              </div>
+
+              <!--
               <div id="chat-agenda" class="flex-1 h-[400px] lg:h-[600px] p-4 overflow-y-auto flex flex-col gap-4 bg-[#0a0a0a] scrollbar-thin">
                 <div class="bg-[#222] text-white p-3.5 rounded-2xl rounded-tl-sm self-start max-w-[85%] text-sm leading-relaxed border border-white/5 shadow-lg">
                   ¡Hola! Soy el asistente de MicroBarber. ¿Quieres agendar una cita?
                 </div>
               </div>
+              -->
+
               <div class="p-3 bg-[#111] border-t border-white/10">
                 <form class="flex gap-2 chat-form" data-demo="agenda">
                   <input type="text" placeholder="Escribe un mensaje..." class="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/30 transition-colors disabled:opacity-50" required>
@@ -231,7 +214,7 @@ const proyectos = [
                 </form>
               </div>
             </div>
-            
+
             <!-- Panel Calendario UI -->
             <div class="flex-1 p-6 bg-[#0f0f0f] flex flex-col h-[400px] lg:h-[685px] overflow-hidden">
               <div class="flex justify-between items-end mb-6">
@@ -332,9 +315,7 @@ Alérgenos: Fritura lleva gluten. Tarta lleva lácteos.
       <div class="relative z-10 max-w-3xl mx-auto">
         <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 text-balance tracking-tight">¿Quieres esto para tu día a día?</h2>
         <p class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">Deja de perder horas contestando WhatsApps de "a qué hora tienes hueco". Automatiza y relájate.</p>
-
         <a href={`${baseUrl}#contacto`} class="inline-flex items-center justify-center bg-white text-primary px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">Empezar a Automatizar</a>
-
       </div>
     </section>
   </main>
@@ -629,5 +610,7 @@ Alérgenos: Fritura lleva gluten. Tarta lleva lácteos.
       });
     });
   </script>
+
 </body>
 </html>
+
