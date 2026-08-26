@@ -222,6 +222,7 @@ const proyectos = [
                   <h3 class="text-white font-display font-bold text-2xl">Calendario</h3>
                   <p class="text-white/50 text-sm">Próximas citas</p>
                 </div>
+                <div id="day-selector" class="flex gap-2 mb-4 overflow-x-auto shrink-0"></div>
                 <div class="flex gap-2 text-xs font-medium text-white/70">
                   <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-white"></div> Álex</span>
                   <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-slate-500"></div> Laura</span>
@@ -487,14 +488,45 @@ const proyectos = [
     const chatForms = document.querySelectorAll('.chat-form');
     
     const chatHistory = { agenda: [], menu: [] };
-    let calendarState = []; 
+    let calendarState = [];
+    let selectedDate = null;  
     let orderState = []; 
+
+    function renderDaySelector() {
+      const selector = document.getElementById('day-selector');
+      if (!selector) return;
+
+      const diasUnicos = [...new Set(calendarState.map(a => a.date))].filter(Boolean);
+
+      if (diasUnicos.length === 0) {
+        selector.innerHTML = '';
+        return;
+      }
+
+      if (selectedDate === null || !diasUnicos.includes(selectedDate)) {
+        selectedDate = diasUnicos[0];
+      }
+
+      selector.innerHTML = diasUnicos.map(dia => `
+        <button type="button" data-dia="${dia}" class="px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors ${dia === selectedDate ? 'bg-white text-black' : 'bg-white/10 text-white/60 hover:bg-white/20'}">
+          ${dia}
+        </button>
+      `).join('');
+
+      selector.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          selectedDate = btn.dataset.dia;
+          renderDaySelector();
+          renderCalendar();
+        });
+      });
+    }
 
     function renderCalendar() {
       const grid = document.getElementById('agenda-blocks');
       if (!grid) return;
       grid.innerHTML = '';
-      calendarState.forEach(appt => {
+      calendarState.filter(appt => appt.date === selectedDate).forEach(appt => {
         const hourMatch = appt.time.match(/^(\d+)/);
         if (!hourMatch) return;
         const hour = parseInt(hourMatch[1]);
@@ -505,7 +537,7 @@ const proyectos = [
           div.className = `absolute left-16 right-4 p-2 rounded-lg text-[11px] font-bold shadow-md flex justify-between items-center transition-all animate-pulse-once ${appt.staff === 'Álex' ? 'bg-white text-black' : 'bg-slate-500 text-white'}`;
           div.style.top = `${top + 8}px`;
           div.style.height = '32px';
-          div.innerHTML = `<span>${appt.date} · ${appt.time} - ${appt.name}</span><span class="opacity-80 font-normal">${appt.service}</span>`;
+          div.innerHTML = `<span>${appt.time} - ${appt.name}</span><span class="opacity-80 font-normal">${appt.service}</span>`;
           grid.appendChild(div);
         }
       });
@@ -609,10 +641,12 @@ const proyectos = [
             
             if (name === 'book_appointment') {
               calendarState.push({ date: args.date, time: args.time, name: args.customer_name, service: args.service, staff: args.staff });
+              renderDaySelector();
               renderCalendar();
               toolResults.push({ role: "tool", tool_call_id: call.id, name: name, content: "Cita agendada correctamente." });
             } else if (name === 'cancel_appointment') {
               calendarState = calendarState.filter(a => a.time !== args.time);
+              renderDaySelector();
               renderCalendar();
               toolResults.push({ role: "tool", tool_call_id: call.id, name: name, content: "Cita cancelada correctamente." });
             } else if (name === 'add_to_order') {
