@@ -541,10 +541,13 @@ const proyectos = [
           const rowHeight = 49; // approx height of each hour row in px
           const top = (hour - 10) * rowHeight;
           const div = document.createElement('div');
-          div.className = `absolute left-16 right-4 p-2 rounded-lg text-[11px] font-bold shadow-md flex justify-between items-center transition-all animate-pulse-once ${appt.staff === 'Álex' ? 'bg-white text-black' : 'bg-slate-500 text-white'}`;
+          const esAlex = appt.staff === 'Álex';
+          div.className = `absolute p-2 rounded-lg text-[11px] font-bold shadow-md flex justify-between items-center transition-all animate-pulse-once ${esAlex ? 'bg-white text-black' : 'bg-slate-500 text-white'}`;
           div.style.top = `${top + 8}px`;
           div.style.height = '32px';
-          div.innerHTML = `<span>${appt.time} - ${appt.name}</span><span class="opacity-80 font-normal">${appt.service}</span>`;
+          div.style.left = esAlex ? '4rem' : 'calc(50% + 0.25rem)';
+          div.style.right = esAlex ? 'calc(50% + 0.25rem)' : '1rem';
+          div.innerHTML = `<span class="truncate">${appt.time} - ${appt.name}</span>`;
           grid.appendChild(div);
         }
       });
