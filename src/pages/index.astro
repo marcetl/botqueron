@@ -748,6 +748,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
         const telefonoVal = telefonoInput.value.trim(); // Ya sabemos que no es null
 
         if (!/^(\+34|0)[0-9\s\-]{7,13}$/.test(telefonoVal)) {
+          formMessage.classList.remove('hidden');
           formMessage.textContent = '⚠️ Introduce un número de teléfono válido.';
           formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-red-50 text-red-600 border border-red-100';
           return;
@@ -755,6 +756,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
 
         if (!N8N_WEBHOOK_URL || N8N_WEBHOOK_URL === 'TU_URL_DE_WEBHOOK_N8N_AQUI') {
           console.warn('Falta configurar la URL de n8n.');
+          formMessage.classList.remove('hidden');
           formMessage.textContent = '⚠️ Error: Falta configurar el destino del formulario.';
           formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-red-50 text-red-600 border border-red-100';
           return;
@@ -774,6 +776,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
           });
 
           if (response.ok) {
+            formMessage.classList.remove('hidden');
             formMessage.textContent = '✅ ¡Recibido! Te contactaremos pronto.';
             formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-emerald-50 text-emerald-600 border border-emerald-100';
             (contactForm as HTMLFormElement).reset();

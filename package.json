@@ -12,11 +12,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^8.2.0",
-    "@astrojs/node": "^11.1.0",
-    "@astrojs/vercel": "^11.0.5",
+    "@astrojs/netlify": "^8.2.4",
+    "@astrojs/node": "^11.1.4",
+    "@astrojs/vercel": "^11.0.8",
     "@tailwindcss/vite": "^4.2.1",
-    "astro": "^7.2.0",
+    "astro": "^7.2.7",
     "tailwindcss": "^4.2.1"
   },
   "allowScripts": {
