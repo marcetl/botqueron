@@ -492,11 +492,18 @@ const proyectos = [
     let selectedDate = null;  
     let orderState = []; 
 
+    function parseFechaDMY(str) {
+      const [d, m, y] = str.split('-');
+      return new Date(`${y}-${m}-${d}`);
+    }
+
     function renderDaySelector() {
       const selector = document.getElementById('day-selector');
       if (!selector) return;
 
-      const diasUnicos = [...new Set(calendarState.map(a => a.date))].filter(Boolean);
+      const diasUnicos = [...new Set(calendarState.map(a => a.date))]
+        .filter(Boolean)
+        .sort((a, b) => parseFechaDMY(a) - parseFechaDMY(b));
 
       if (diasUnicos.length === 0) {
         selector.innerHTML = '';
@@ -641,6 +648,7 @@ const proyectos = [
             
             if (name === 'book_appointment') {
               calendarState.push({ date: args.date, time: args.time, name: args.customer_name, service: args.service, staff: args.staff });
+              selectedDate = args.date;
               renderDaySelector();
               renderCalendar();
               toolResults.push({ role: "tool", tool_call_id: call.id, name: name, content: "Cita agendada correctamente." });
