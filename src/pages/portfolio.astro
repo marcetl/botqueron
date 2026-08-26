@@ -503,7 +503,7 @@ const proyectos = [
           div.className = `absolute left-16 right-4 p-2 rounded-lg text-[11px] font-bold shadow-md flex justify-between items-center transition-all animate-pulse-once ${appt.staff === 'Álex' ? 'bg-white text-black' : 'bg-slate-500 text-white'}`;
           div.style.top = `${top + 8}px`;
           div.style.height = '32px';
-          div.innerHTML = `<span>${appt.time} - ${appt.name}</span><span class="opacity-80 font-normal">${appt.service}</span>`;
+          div.innerHTML = `<span>${appt.date} · ${appt.time} - ${appt.name}</span><span class="opacity-80 font-normal">${appt.service}</span>`;
           grid.appendChild(div);
         }
       });
@@ -606,7 +606,7 @@ const proyectos = [
             const args = JSON.parse(call.function.arguments);
             
             if (name === 'book_appointment') {
-              calendarState.push({ time: args.time, name: args.customer_name, service: args.service, staff: args.staff });
+              calendarState.push({ date: args.date, time: args.time, name: args.customer_name, service: args.service, staff: args.staff });
               renderCalendar();
               toolResults.push({ role: "tool", tool_call_id: call.id, name: name, content: "Cita agendada correctamente." });
             } else if (name === 'cancel_appointment') {
