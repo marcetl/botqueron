@@ -37,13 +37,14 @@ const TOOLS = {
         description: "Agenda una cita en el calendario.",
         parameters: {
           type: "object",
+          date: { type: "string", description: "Fecha de la cita en formato DD-MM-YYYY." },
           properties: {
             time: { type: "string", description: "Hora de la cita en formato HH:00 (ej. 12:00, 16:00). El horario es de 10:00 a 19:00." },
             customer_name: { type: "string", description: "Nombre del cliente." },
             service: { type: "string", description: "Servicio solicitado." },
             staff: { type: "string", description: "Nombre del trabajador (Álex o Laura)." }
           },
-          required: ["time", "customer_name", "service", "staff"]
+          required: ["date", "time", "customer_name", "service", "staff"]
         }
       }
     },
@@ -99,6 +100,9 @@ const TOOLS = {
 export const POST: APIRoute = async ({ request }) => {
   // 1. Obtener la clave de entorno (se lee en tiempo de ejecución, nunca queda grabada en el bundle)
   const apiKey = import.meta.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
+  const hoy = new Date();
+  const fechaHoyTexto = hoy.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  const fechaFormateada = hoy.toLocaleDateString('es-ES').split('/').join('-');
 
   if (!apiKey) {
     console.error("❌ ERROR: La API Key de OpenRouter no está cargada en el servidor.");
@@ -121,6 +125,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // 2. Preparar el System Prompt
     let finalSystemPrompt = SYSTEM_PROMPTS?.[demoType] || '';
+    finalSystemPrompt += `\n\nHOY es ${fechaHoyTexto} (formato DD-MM-YYYY: ${fechaFormateada}). Si el cliente dice "mañana", "el viernes", etc., calcula tú la fecha exacta a partir de esta referencia y pásala en el parámetro "date" al usar book_appointment.`;
     if (context) {
       finalSystemPrompt += `\n\nCONTEXTO ACTUALIZADO POR EL USUARIO (Usa esta información prioritariamente):\n${context}`;
     }
