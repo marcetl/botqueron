@@ -9,6 +9,9 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
 <html lang="es" class="bg-canvas text-ink scroll-smooth">
 
 <head>
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Botquerón | IA con acento local al servicio de tu negocio</title>
@@ -430,7 +433,6 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
       </div>
     </section>
 
-
     <!-- PLANES SECTION -->
     <section id="planes" class="py-24 bg-[#F8FAFC]">
       <div class="max-w-7xl mx-auto px-6">
@@ -806,9 +808,9 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
 
     // Form Submission
     document.addEventListener('DOMContentLoaded', () => {
-      const contactForm = document.getElementById('contact-form');
-      const submitBtn = document.getElementById('submit-btn');
-      const formMessage = document.getElementById('form-message');
+      const contactForm = document.querySelector<HTMLFormElement>('#contact-form');
+      const submitBtn = document.querySelector<HTMLButtonElement>('#submit-btn');
+      const formMessage = document.querySelector<HTMLElement>('#form-message');
 
       if (contactForm && submitBtn && formMessage) {
         contactForm.addEventListener('submit', async (e) => {
@@ -817,7 +819,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
           // URL directa en texto plano para evitar fallos de compilación en Astro
           const WEBHOOK_URL = 'https://n8n.malagamicro.com/webhook/botqueron-lead';
 
-          const telefonoInput = document.getElementById('telefono');
+          const telefonoInput = document.querySelector<HTMLInputElement>('#telefono');
           if (!telefonoInput) return;
           const telefonoVal = telefonoInput.value.trim();
 
