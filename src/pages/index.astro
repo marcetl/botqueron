@@ -651,7 +651,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
             <p class="text-ink-light">Déjanos tus datos. No hay 'bots' en este paso.</p>
           </div>
 
-          <form id="contact-form" data-webhook={PUBLIC_N8N_WEBHOOK_URL} class="space-y-6">
+          <form id="contact-form" class="space-y-6">
 
             <!-- Nombre a ancho completo -->
             <div class="space-y-2">
@@ -806,17 +806,18 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
 
     // Form Submission
     document.addEventListener('DOMContentLoaded', () => {
-      const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
-      const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
-      const formMessage = document.getElementById('form-message') as HTMLDivElement | null;
+      const contactForm = document.getElementById('contact-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const formMessage = document.getElementById('form-message');
 
       if (contactForm && submitBtn && formMessage) {
         contactForm.addEventListener('submit', async (e) => {
           e.preventDefault();
 
-          const webhookUrl = 'https://n8n.malagamicro.com/webhook/botqueron-lead';
+          // URL directa en texto plano para evitar fallos de compilación en Astro
+          const WEBHOOK_URL = 'https://n8n.malagamicro.com/webhook/botqueron-lead';
 
-          const telefonoInput = document.getElementById('telefono') as HTMLInputElement | null;
+          const telefonoInput = document.getElementById('telefono');
           if (!telefonoInput) return;
           const telefonoVal = telefonoInput.value.trim();
 
@@ -837,7 +838,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
           const timeoutId = setTimeout(() => controller.abort(), 10000);
 
           try {
-            const response = await fetch(webhookUrl, {
+            const response = await fetch(WEBHOOK_URL, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(data),
@@ -852,7 +853,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
               formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-emerald-50 text-emerald-600 border border-emerald-100';
               contactForm.reset();
             } else {
-              throw new Error('Error en el servidor');
+              throw new Error('Error en la respuesta del servidor');
             }
           } catch (error) {
             clearTimeout(timeoutId);
