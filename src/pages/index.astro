@@ -337,7 +337,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
         <!-- Subtítulo -->
         <h3 style="font-family: &quot;Cormorant Garamond&quot;, serif; font-size: clamp(1.35rem, 2.2vw, 1.75rem); font-weight: 600; color: rgb(247, 248, 248); text-align: center; margin-top: 3.5rem; margin-bottom: 1.5rem; line-height: 1.25;">
           Tres sectores tienen ya 
-          <span style="color: rgb(0, 255, 212); font-style: italic;"> su página a medida</span>
+          <span style="color: rgb(0, 255, 212); font-style: italic;"> su app a medida</span>
         </h3>
 
         <!-- Tarjetas inferiores -->
@@ -387,9 +387,12 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
           </a>
        </div>
 
-        <!-- Pie de página -->
+        <!-- Subtítulo -->
         <p style="text-align: center; margin-top: 2.5rem; font-size: 0.875rem; color: rgb(0, 255, 212);">
-          ¿No es el tuyo? Da igual: si tu negocio gestiona citas, MicroAgenda es para ti.
+          ¿No está tu tienda? Da igual: si tu negocio gestiona citas, MicroAgenda es para ti.
+        </p>
+        <p style="text-align: center; margin-top: 0.5rem; font-size: 0.875rem;">
+          <a href="#contacto" style="color: rgb(0, 255, 212); text-decoration: underline;">Contáctanos</a>
         </p>
 
       </div>
@@ -787,7 +790,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
 
         const telefonoInput = document.getElementById('telefono') as HTMLInputElement | null;
         if (!telefonoInput) return;
-        const telefonoVal = telefonoInput.value.trim(); // Ya sabemos que no es null
+        const telefonoVal = telefonoInput.value.trim();
 
         if (!/^(?:\+34|0034|34)?[\s-]?[6789]\d{2}[\s-]?\d{3}[\s-]?\d{3}$/.test(telefonoVal)) {
           formMessage.classList.remove('hidden');
