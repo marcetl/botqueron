@@ -308,8 +308,6 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
       </div>
     </section>
 
-
-
     <!-- ENLACES SECTION -->
     <section id="enlaces" class="relative py-16 overflow-hidden" style="background-color: #1d4ed8;">
       <div style="max-width: 1280px; margin: 0px auto; padding: 0 1.5rem;">
@@ -543,9 +541,6 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
       </div>
     </section>
 
-
-
-
     <!-- BANNER PORTFOLIO -->
     <section id="banner" class="relative py-16 overflow-hidden bg-primary">
       <div class="absolute inset-0 opacity-80 bg-gradient-to-br from-blue-700 to-primary"></div>
@@ -559,7 +554,6 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
         </a>
       </div>
     </section>
-
 
     <!-- FAQ SECTION -->
     <section id="faq" class="py-24 bg-white border-t border-slate-100 [content-visibility:auto] [contain-intrinsic-size:1px_1400px]">
@@ -647,8 +641,6 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
         </div>
       </div>
     </section>
-
-
 
     <!-- CONTACTO SECTION -->
     <section id="contacto" class="py-24 bg-white relative">
@@ -820,7 +812,13 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
     if (contactForm && submitBtn && formMessage) {
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const N8N_WEBHOOK_URL = import.meta.env.PUBLIC_N8N_WEBHOOK_URL;
+
+        const response = await fetch(N8N_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+          signal: controller.signal
+        });
 
         const telefonoInput = document.getElementById('telefono') as HTMLInputElement | null;
         if (!telefonoInput) return;
