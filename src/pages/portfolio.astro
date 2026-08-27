@@ -547,6 +547,7 @@ const proyectos = [
           div.style.height = '32px';
           div.style.left = esAlex ? '4rem' : 'calc(50% + 0.25rem)';
           div.style.right = esAlex ? 'calc(50% + 0.25rem)' : '1rem';
+          div.title = appt.service;
           div.innerHTML = `<span class="truncate">${appt.time} - ${appt.name}</span>`;
           grid.appendChild(div);
         }
