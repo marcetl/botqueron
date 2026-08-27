@@ -619,33 +619,40 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
         <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 md:p-12 soft-shadow slide-up">
           <div class="mb-10 text-center">
             <h2 class="font-display font-bold text-3xl md:text-4xl mb-3 text-ink">Hablemos cara a cara</h2>
-            <p class="text-ink-light">Déjanos tus datos. Cero bots en este paso.</p>
+            <p class="text-ink-light">Déjanos tus datos. No hay 'bots' en este paso.</p>
           </div>
-          
+
           <form id="contact-form" class="space-y-6">
+
+            <!-- Nombre a ancho completo -->
+            <div class="space-y-2">
+              <label for="nombre" class="block text-sm font-bold text-ink">Nombre</label>
+              <input type="text" name="nombre" id="nombre" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Tu nombre" required>
+            </div>
+
+            <!-- Email y Teléfono en el mismo renglón -->
             <div class="grid md:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <label class="block text-sm font-bold text-ink">Nombre</label>
-                <input type="text" name="nombre" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Tu nombre" required>
+                <label for="email" class="block text-sm font-bold text-ink">Correo Electrónico</label>
+                <input type="email" name="email" id="email" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="hola@ejemplo.com" required>
               </div>
               <div class="space-y-2">
-                <label class="block text-sm font-bold text-ink">Correo Electrónico</label>
-                <input type="email" name="email" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="hola@ejemplo.com" required>
+                <label for="telefono" class="block text-sm font-bold text-ink">Teléfono</label>
+                <input type="tel" name="telefono" id="telefono" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="+34 600 000 000" pattern="[+0-9\s\-]{7,20}" title="Introduce solo números, espacios, guiones o el prefijo +" required>
               </div>
             </div>
+
             <div class="space-y-2">
-              <label class="block text-sm font-bold text-ink">Teléfono</label>
-              <input type="tel" name="telefono" id="telefono" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="+34 600 000 000" pattern="[+0-9\s\-]{7,20}" title="Introduce solo números, espacios, guiones o el prefijo +" required>
+              <label for="mensaje" class="block text-sm font-bold text-ink">¿Qué buscas automatizar?</label>
+              <textarea name="mensaje" id="mensaje" rows="4" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Cuéntanos un poco sobre tu negocio..."></textarea>
             </div>
-            <div class="space-y-2">
-              <label class="block text-sm font-bold text-ink">¿Qué buscas automatizar?</label>
-              <textarea name="mensaje" rows="4" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Cuéntanos un poco sobre tu negocio..."></textarea>
-            </div>
+
             <button type="submit" id="submit-btn" class="w-full btn-primary py-4 text-center font-bold text-lg mt-4">
               Enviar petición
             </button>
             <div id="form-message" class="hidden p-4 rounded-xl text-center font-bold mt-4 text-sm"></div>
           </form>
+
         </div>
       </div>
     </section>
