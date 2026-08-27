@@ -630,7 +630,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
               <input type="text" name="nombre" id="nombre" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Tu nombre" required>
             </div>
 
-            <!-- Email y Teléfono en el mismo renglón -->
+            <!-- Email y Teléfono -->
             <div class="grid md:grid-cols-2 gap-6">
               <div class="space-y-2">
                 <label for="email" class="block text-sm font-bold text-ink">Correo Electrónico</label>
@@ -643,18 +643,29 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
             </div>
 
             <div class="space-y-2">
-              <label for="mensaje" class="block text-sm font-bold text-ink">¿Qué buscas automatizar?</label>
-              <textarea name="mensaje" id="mensaje" rows="4" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Cuéntanos un poco sobre tu negocio..."></textarea>
-            </div>
-
-            <div class="space-y-2">
-              <label for="sector" class="block text-sm font-bold text-ink">Tipo de negocio</label>
+              <label for="sector" class="block text-sm font-bold text-ink">¿Qué negocio quieres automatizar?</label>
               <select name="sector" id="sector" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" required>
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option value="peluqueria">Peluquería</option>
                 <option value="salon-estetica">Salón de estética</option>
                 <option value="veterinaria">Veterinaria</option>
               </select>
+            </div>
+
+            <div class="space-y-2">
+              <label for="clientes-semanales" class="block text-sm font-bold text-ink">¿Cuántos clientes atiendes por semana?</label>
+              <select name="clientes_semanales" id="clientes-semanales" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="0-20">Menos de 20</option>
+                <option value="21-50">Entre 21 y 50</option>
+                <option value="51-100">Entre 51 y 100</option>
+                <option value="mas-100">Más de 100</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label for="mensaje" class="block text-sm font-bold text-ink">Sobre tu negocio</label>
+              <textarea name="mensaje" id="mensaje" rows="4" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Cuéntanos un poco sobre tu negocio..."></textarea>
             </div>
 
             <button type="submit" id="submit-btn" class="w-full btn-primary py-4 text-center font-bold text-lg mt-4">
