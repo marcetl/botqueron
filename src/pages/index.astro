@@ -638,7 +638,14 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
               </div>
               <div class="space-y-2">
                 <label for="telefono" class="block text-sm font-bold text-ink">Teléfono</label>
-                <input type="tel" name="telefono" id="telefono" class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="+34 600 000 000" pattern="[+0-9\s\-]{7,20}" title="Introduce solo números, espacios, guiones o el prefijo +" required>
+
+                <input type="tel" name="telefono" id="telefono"
+                  class="w-full bg-white border border-slate-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  placeholder="+34 600 000 000"
+                  pattern="^(\+34|0034|34)?[\s\-]?[6789]\d{2}[\s\-]?\d{3}[\s\-]?\d{3}$"
+                  title="Introduce un teléfono español válido (9 dígitos, empezando por 6, 7, 8 o 9)"
+                  required>
+
               </div>
             </div>
 
@@ -672,7 +679,14 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
               Enviar petición
             </button>
 
-            <div id="form-message" class="hidden p-4 rounded-xl text-center font-bold mt-4 text-sm"></div>
+            <div 
+              id="form-message" 
+              class="hidden p-4 rounded-xl text-center font-bold mt-4 text-sm"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            ></div>
+
           </form>
 
         </div>
@@ -769,16 +783,15 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
     if (contactForm && submitBtn && formMessage) {
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-       
         const N8N_WEBHOOK_URL = import.meta.env.PUBLIC_N8N_WEBHOOK_URL;
 
         const telefonoInput = document.getElementById('telefono') as HTMLInputElement | null;
         if (!telefonoInput) return;
         const telefonoVal = telefonoInput.value.trim(); // Ya sabemos que no es null
 
-        if (!/^(\+34|0)[0-9\s\-]{7,13}$/.test(telefonoVal)) {
+        if (!/^(?:\+34|0034|34)?[\s-]?[6789]\d{2}[\s-]?\d{3}[\s-]?\d{3}$/.test(telefonoVal)) {
           formMessage.classList.remove('hidden');
-          formMessage.textContent = '⚠️ Introduce un número de teléfono válido.';
+          formMessage.textContent = '⚠️ Introduce un número de teléfono español válido (9 dígitos, empezando por 6, 7, 8 o 9).';
           formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-red-50 text-red-600 border border-red-100';
           return;
         }
@@ -797,12 +810,18 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
         (submitBtn as HTMLButtonElement).disabled = true;
         submitBtn.textContent = 'Enviando...';
 
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 segundos
+
         try {
           const response = await fetch(N8N_WEBHOOK_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            signal: controller.signal
           });
+
+          clearTimeout(timeoutId);
 
           if (response.ok) {
             formMessage.classList.remove('hidden');
@@ -813,7 +832,14 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
             throw new Error('Error en el servidor');
           }
         } catch (error) {
-          formMessage.textContent = '❌ Algo ha fallado. Inténtalo de nuevo.';
+          clearTimeout(timeoutId);
+
+          formMessage.classList.remove('hidden');
+          if (error instanceof Error && error.name === 'AbortError') {
+            formMessage.textContent = '⏱️ La petición ha tardado demasiado. Inténtalo de nuevo.';
+          } else {
+            formMessage.textContent = '❌ Algo ha fallado. Inténtalo de nuevo.';
+          }
           formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-red-50 text-red-600 border border-red-100';
         } finally {
           (submitBtn as HTMLButtonElement).disabled = false;
@@ -919,6 +945,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
         ticking = true;
       }
     }, { passive: true });
+
   </script>
 
 </body>
