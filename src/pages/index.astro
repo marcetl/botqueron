@@ -805,6 +805,73 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
     });
 
     // Form Submission
+    document.addEventListener('DOMContentLoaded', () => {
+      const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
+      const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+      const formMessage = document.getElementById('form-message') as HTMLDivElement | null;
+
+      if (contactForm && submitBtn && formMessage) {
+        contactForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const webhookUrl = 'https://n8n.malagamicro.com/webhook/botqueron-lead';
+
+          const telefonoInput = document.getElementById('telefono') as HTMLInputElement | null;
+          if (!telefonoInput) return;
+          const telefonoVal = telefonoInput.value.trim();
+
+          if (!/^(?:\+34|0034|34)?[\s-]?[6789]\d{2}[\s-]?\d{3}[\s-]?\d{3}$/.test(telefonoVal)) {
+            formMessage.classList.remove('hidden');
+            formMessage.textContent = '⚠️ Introduce un número de teléfono español válido (9 dígitos, empezando por 6, 7, 8 o 9).';
+            formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-red-50 text-red-600 border border-red-100';
+            return;
+          }
+
+          const formData = new FormData(contactForm);
+          const data = Object.fromEntries(formData.entries());
+
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Enviando...';
+
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+          try {
+            const response = await fetch(webhookUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data),
+              signal: controller.signal
+            });
+
+            clearTimeout(timeoutId);
+
+            if (response.ok) {
+              formMessage.classList.remove('hidden');
+              formMessage.textContent = '✅ ¡Recibido! Te contactaremos pronto.';
+              formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-emerald-50 text-emerald-600 border border-emerald-100';
+              contactForm.reset();
+            } else {
+              throw new Error('Error en el servidor');
+            }
+          } catch (error) {
+            clearTimeout(timeoutId);
+
+            formMessage.classList.remove('hidden');
+            if (error instanceof Error && error.name === 'AbortError') {
+              formMessage.textContent = '⏱️ La petición ha tardado demasiado. Inténtalo de nuevo.';
+            } else {
+              formMessage.textContent = '❌ Algo ha fallado. Inténtalo de nuevo.';
+            }
+            formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-red-50 text-red-600 border border-red-100';
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enviar Petición';
+          }
+        });
+      }
+    });
+    
     const contactForm = document.getElementById('contact-form');
     const submitBtn = document.getElementById('submit-btn');
     const formMessage = document.getElementById('form-message');
