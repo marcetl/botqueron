@@ -812,6 +812,8 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
     });
 
     // Form Submission
+    const N8N_WEBHOOK_URL = import.meta.env.PUBLIC_N8N_WEBHOOK_URL;
+
     document.addEventListener('DOMContentLoaded', () => {
       
       const contactForm = document.getElementById('contact-form');
@@ -834,13 +836,13 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
           return;
         }
 
-        if (!N8N_WEBHOOK_URL || N8N_WEBHOOK_URL === 'TU_URL_DE_WEBHOOK_N8N_AQUI') {
-          console.warn('Falta configurar la URL de n8n.');
+        if (!N8N_WEBHOOK_URL) {
+          console.warn('Falta configurar PUBLIC_N8N_WEBHOOK_URL en el .env');
           formMessage.classList.remove('hidden');
           formMessage.textContent = '⚠️ Error: Falta configurar el destino del formulario.';
           formMessage.className = 'p-4 rounded-xl text-center font-bold mt-4 text-sm bg-red-50 text-red-600 border border-red-100';
           return;
-        }
+        }        
 
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData.entries());
