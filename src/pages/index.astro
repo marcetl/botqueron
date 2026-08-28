@@ -850,8 +850,8 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
 
     document.addEventListener('DOMContentLoaded', () => {
       
-      const contactForm = document.getElementById('contact-form');
-      const submitBtn = document.getElementById('submit-btn');
+      const contactForm = document.getElementById('contact-form') as HTMLFormElement;
+      const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
       const formMessage = document.getElementById('form-message');
 
       if (!contactForm || !submitBtn || !formMessage) return;
@@ -859,7 +859,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const telefonoInput = document.getElementById('telefono');
+        const telefonoInput = document.getElementById('telefono') as HTMLInputElement;
         if (!telefonoInput) return;
         const telefonoVal = telefonoInput.value.trim();
 
