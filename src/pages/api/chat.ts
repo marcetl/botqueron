@@ -38,8 +38,8 @@ const TOOLS = {
         description: "Agenda una cita en el calendario.",
         parameters: {
           type: "object",
-          date: { type: "string", description: "Fecha de la cita en formato DD-MM-YYYY." },
           properties: {
+            date: { type: "string", description: "Fecha de la cita en formato DD-MM-YYYY." },
             time: { type: "string", description: "Hora de la cita en formato HH:00 (ej. 12:00, 16:00). El horario es de 10:00 a 19:00." },
             customer_name: { type: "string", description: "Nombre del cliente." },
             service: { type: "string", description: "Servicio solicitado." },
