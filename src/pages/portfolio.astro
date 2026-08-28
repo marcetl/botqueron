@@ -40,23 +40,39 @@ const proyectos = [
   <title>Portfolio y Demos | Botquerón</title>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <script is:inline>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1002235212216659');
-    fbq('track', 'PageView');
+  <!-- Meta Pixel Code -->
+  <script>
+    (function() {
+      const w = window as any;
+      const d = document;
+      const s = 'script';
+      const u = 'https://connect.facebook.net/en_US/fbevents.js';
+      
+      if (w.fbq) return;
+      const n: any = function() {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!w._fbq) w._fbq = n;
+      n.push = n;
+      n.loaded = true;
+      n.version = '2.0';
+      n.queue = [];
+      
+      const t = d.createElement(s) as HTMLScriptElement;
+      t.async = true;
+      t.src = u;
+      const sb = d.getElementsByTagName(s)[0];
+      sb?.parentNode?.insertBefore(t, sb);
+      
+      w.fbq = n;
+      w.fbq('init', '1601925041289177');
+      w.fbq('track', 'PageView');
+    })();
   </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1002235212216659&ev=PageView&noscript=1"
-    />
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1601925041289177&ev=PageView&noscript=1"/>
   </noscript>
+  <!-- End Meta Pixel Code -->
 
 </head>
 
