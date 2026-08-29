@@ -40,45 +40,6 @@ const proyectos = [
   <title>Portfolio y Demos | Botquerón</title>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Meta Pixel Code -->
-  <script>
-    (function() {
-      const w = window as any;
-      const d = document;
-      const s = 'script';
-      const u = 'https://connect.facebook.net/en_US/fbevents.js';
-      
-      if (w.fbq) return;
-      const n: any = function() {
-        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-      };
-      if (!w._fbq) w._fbq = n;
-      n.push = n;
-      n.loaded = true;
-      n.version = '2.0';
-      n.queue = [];
-      
-      const t = d.createElement(s) as HTMLScriptElement;
-      t.async = true;
-      t.src = u;
-      const sb = d.getElementsByTagName(s)[0];
-      sb?.parentNode?.insertBefore(t, sb);
-      
-      w.fbq = n;
-      w.fbq('init', '1601925041289177');
-      w.fbq('track', 'PageView');
-      w.fbq('track', 'CompleteRegistration');
-      w.fbq('track', 'Contact');
-      w.fbq('track', 'FindLocation');
-      w.fbq('track', 'Lead');
-      w.fbq('track', 'ViewContent');
-    })();
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1601925041289177&ev=PageView&noscript=1"/>
-  </noscript>
-  <!-- End Meta Pixel Code -->
-
 </head>
 
 <body class="selection:bg-primary/20 selection:text-primary font-body antialiased text-ink bg-[#F8FAFC]">
